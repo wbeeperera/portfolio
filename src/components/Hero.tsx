@@ -145,10 +145,10 @@ export default function Hero() {
             transition={{ duration: 0.9, delay: 1.5, ease: [0.22, 1, 0.36, 1] }}
             className="relative z-0 pt-2 sm:pt-4"
           >
-            <h1 className="font-display text-[min(12.5vw,7.5vh)] font-black uppercase leading-[0.9] tracking-tight text-white [text-wrap:balance] sm:text-[min(9vw,8.5vh)] lg:text-[min(7.4vw,12vh,128px)]">
-              <span className="block">Websites, Apps,</span>
+            <h1 className="font-display text-[min(8.5vw,5.5vh)] font-black uppercase leading-[0.95] tracking-tight text-white [text-wrap:balance] sm:text-[min(6.5vw,6.5vh)] lg:text-[min(5.2vw,9vh,88px)]">
+              <span className="block">We Build Digital Experiences</span>
               <span className="block">
-                <span className="text-neon neon-text-glow"><ShinyText text="SEO & POS" speed={3.2} /></span> Systems
+                That <span className="text-neon neon-text-glow"><ShinyText text="Grow Your Business" speed={3.2} /></span>
               </span>
             </h1>
           </motion.div>
@@ -173,22 +173,22 @@ export default function Hero() {
           >
             <div className="pointer-events-none absolute -top-10 bottom-[-48px] left-1/2 -z-10 w-[100vw] -translate-x-1/2 bg-gradient-to-t from-[#0a0d0c] via-[#0a0d0c]/85 to-transparent" />
             <p className="max-w-2xl text-sm leading-6 text-silver-light sm:text-lg sm:leading-8">
-              We design and build fast websites, mobile apps, SEO-ready growth engines and POS systems for businesses that want to look sharp and sell smarter.
+              Websites, business systems and social media management, all under one roof.
             </p>
-            <div className="mt-5 flex gap-2 sm:mt-7 sm:gap-3">
+            <div className="mt-5 flex w-full flex-col gap-2.5 sm:mt-7 sm:w-auto sm:flex-row sm:gap-3">
               <a
                 href="#portfolio"
                 className="group inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full bg-neon px-5 py-3 text-[11px] font-extrabold uppercase tracking-[0.16em] text-[#0B0B0D] shadow-[0_0_28px_rgba(121,252,50,0.35)] transition-all duration-300 hover:scale-[1.02] hover:bg-neon-hover sm:px-7 sm:py-4 sm:text-sm"
                 data-cursor-text="Work"
               >
-                <span>See Live Work</span>
+                <span>View Our Work</span>
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
               <a
                 href="#contact"
                 className="inline-flex items-center justify-center whitespace-nowrap rounded-full border border-white/15 bg-black/40 px-5 py-3 text-[11px] font-bold uppercase tracking-[0.16em] text-white backdrop-blur-md transition-all duration-300 hover:border-neon/60 hover:bg-neon/10 sm:px-7 sm:py-4 sm:text-sm"
               >
-                Book a Call
+                Get a Free Consultation
               </a>
             </div>
           </div>

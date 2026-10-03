@@ -78,7 +78,7 @@ body {
 /* Headings: Samthon Aesthetic (Clash Display / Cabinet Grotesk) */
 h1, h2, h3, h4, h5, h6, .font-display {
   font-family: var(--font-clash), 'Clash Display', var(--font-cabinet), 'Cabinet Grotesk', sans-serif;
-  letter-spacing: -0.015em;
+  letter-spacing: 0;
 }
 
 .font-display {

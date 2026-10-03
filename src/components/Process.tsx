@@ -1,96 +1,89 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Compass, FileSpreadsheet, Code2, Rocket, TrendingUp } from "lucide-react";
+import { ClipboardCheck, Code2, Compass, LineChart, Rocket, Wand2 } from "lucide-react";
 
 const steps = [
   {
     step: "01",
-    name: "Discover",
-    icon: Compass,
-    desc: "We learn about your business, goals and customers.",
+    name: "Audit",
+    icon: ClipboardCheck,
+    desc: "We review your current site, search visibility, user journey, and operational gaps.",
   },
   {
     step: "02",
-    name: "Plan",
-    icon: FileSpreadsheet,
-    desc: "We map out the strategy, design and features.",
+    name: "Map",
+    icon: Compass,
+    desc: "We define pages, app flows, POS modules, SEO targets, and launch priorities.",
   },
   {
     step: "03",
-    name: "Design & Build",
-    icon: Code2,
-    desc: "We create and develop your solution.",
+    name: "Design",
+    icon: Wand2,
+    desc: "We create polished interfaces that feel premium, readable, and mobile-native.",
   },
   {
     step: "04",
-    name: "Test & Launch",
-    icon: Rocket,
-    desc: "We test thoroughly, then go live.",
+    name: "Build",
+    icon: Code2,
+    desc: "We develop the website, app, or system with performance and maintainability in mind.",
   },
   {
     step: "05",
-    name: "Support & Grow",
-    icon: TrendingUp,
-    desc: "We provide ongoing support and improvements.",
+    name: "Launch",
+    icon: Rocket,
+    desc: "We test responsiveness, SEO basics, forms, analytics, and deployment before go-live.",
+  },
+  {
+    step: "06",
+    name: "Optimize",
+    icon: LineChart,
+    desc: "We keep improving based on search performance, customer behavior, and business feedback.",
   },
 ];
 
 export default function Process() {
   return (
-    <section id="process" className="py-24 px-4 md:px-8 bg-dark relative overflow-hidden">
-      <div className="max-w-7xl mx-auto relative z-10">
-        
-        {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-16">
-          <span className="text-xs font-mono font-bold uppercase tracking-[0.25em] text-neon mb-3 px-4 py-1.5 rounded-full glass-panel border border-neon/25">
+    <section id="process" className="relative overflow-hidden bg-dark px-4 py-24 md:px-8">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+
+      <div className="relative z-10 mx-auto max-w-7xl">
+        <div className="mb-14 flex flex-col gap-6 text-center">
+          <span className="mx-auto inline-flex rounded-full border border-[#F8D66D]/30 bg-[#F8D66D]/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-[#F8D66D]">
             How We Work
           </span>
-          <h2 className="font-display text-3xl sm:text-5xl font-black text-white tracking-tight mb-4">
-            Our 5-Step Process
+          <h2 className="mx-auto max-w-3xl font-display text-4xl font-black uppercase leading-none text-white sm:text-5xl">
+            A clear sprint path from idea to launch.
           </h2>
-          <p className="text-base text-dark-muted max-w-xl font-normal">
-            A straightforward, collaborative framework designed to turn your business goals into reliable digital realities.
+          <p className="mx-auto max-w-2xl text-base leading-8 text-dark-muted">
+            Every engagement is planned around what your business needs first, whether that is a conversion website, mobile app, SEO campaign, or POS workflow.
           </p>
         </div>
 
-        {/* 5-Step Horizontal Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {steps.map((item, idx) => (
-            <motion.div
+            <motion.article
               key={item.step}
-              initial={{ opacity: 0, y: 25 }}
+              initial={{ opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: idx * 0.1 }}
-              className="glass-panel glass-panel-hover p-6 rounded-2xl border border-white/10 flex flex-col justify-between relative group"
+              transition={{ duration: 0.45, delay: idx * 0.07 }}
+              className="group rounded-[1.5rem] border border-white/10 bg-[#121318]/86 p-6 transition-all duration-300 hover:border-neon/35"
             >
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="font-display font-black text-2xl text-dark-border group-hover:text-neon transition-colors">
-                    {item.step}
-                  </span>
-                  <div className="p-2.5 rounded-xl bg-dark-card text-neon border border-neon/20 group-hover:scale-110 transition-transform">
-                    <item.icon className="w-4 h-4" />
-                  </div>
+              <div className="mb-6 flex items-center justify-between">
+                <span className="font-display text-4xl font-black text-dark-border transition-colors group-hover:text-neon">
+                  {item.step}
+                </span>
+                <div className="rounded-2xl border border-white/10 bg-black/35 p-3 text-neon">
+                  <item.icon className="h-5 w-5" />
                 </div>
-
-                <h3 className="font-display font-bold text-lg text-white mb-2">
-                  {item.name}
-                </h3>
-                <p className="text-xs text-dark-muted leading-relaxed">
-                  {item.desc}
-                </p>
               </div>
 
-              <div className="mt-6 pt-3 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-dark-muted">
-                <span>STEP {item.step}</span>
-                <span className="text-neon font-semibold">✓</span>
-              </div>
-            </motion.div>
+              <h3 className="font-display text-2xl font-black text-white">{item.name}</h3>
+              <p className="mt-3 text-sm leading-7 text-dark-muted">{item.desc}</p>
+            </motion.article>
           ))}
         </div>
-
       </div>
     </section>
   );

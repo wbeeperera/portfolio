@@ -2,232 +2,172 @@
 
 import { motion } from "framer-motion";
 import {
-  Code,
-  Share2,
+  ArrowRight,
   CheckCircle2,
-  Laptop,
-  Database,
-  Store,
-  Settings,
-  ShieldCheck,
-  Video,
   Globe2,
-  CalendarCheck,
-  MessageCircle,
-  Megaphone,
-  Palette,
-  BarChart3,
+  Search,
+  ShoppingCart,
+  Smartphone,
 } from "lucide-react";
 
-const webServices = [
+const services = [
   {
-    icon: Laptop,
-    title: "Customer Front-Ends",
-    desc: "Modern, fast and mobile-friendly websites and web apps that turn visitors into customers.",
+    icon: Globe2,
+    accent: "text-neon",
+    border: "hover:border-neon/45",
+    title: "Website Development",
+    kicker: "Launch fast, convert better",
+    desc: "High-performance websites and web apps designed for trust, speed, mobile behavior, and lead generation.",
+    deliverables: [
+      "Corporate websites and landing pages",
+      "E-commerce and product catalogs",
+      "Booking, enquiry, and payment flows",
+      "CMS-ready content structure",
+    ],
   },
   {
-    icon: Database,
-    title: "In-House Systems",
-    desc: "Custom internal systems for managing staff, inventory, orders, reports and daily operations.",
+    icon: Smartphone,
+    accent: "text-[#49D3FF]",
+    border: "hover:border-[#49D3FF]/45",
+    title: "Mobile Application Development",
+    kicker: "iOS, Android, and customer portals",
+    desc: "Clean mobile experiences for customers, staff, and operations, built around the workflows people actually use.",
+    deliverables: [
+      "Customer apps and dashboards",
+      "Admin panels and staff workflows",
+      "Push-ready product experiences",
+      "API and backend integration",
+    ],
   },
   {
-    icon: Store,
-    title: "POS Systems",
-    desc: "Reliable point-of-sale systems for restaurants, cafés, retail shops and service businesses, with billing, stock tracking and sales reports.",
+    icon: Search,
+    accent: "text-[#F8D66D]",
+    border: "hover:border-[#F8D66D]/45",
+    title: "SEO Growth",
+    kicker: "Rank, measure, improve",
+    desc: "Technical SEO, content structure, analytics, and search-focused pages that help the right customers find you.",
+    deliverables: [
+      "Technical SEO audits",
+      "Keyword and competitor mapping",
+      "On-page SEO and schema setup",
+      "Monthly growth reports",
+    ],
   },
   {
-    icon: Settings,
-    title: "Custom Web Applications",
-    desc: "Tailor-made software built around your business needs.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Website Maintenance & Support",
-    desc: "Updates, security, hosting and ongoing technical support.",
+    icon: ShoppingCart,
+    accent: "text-[#FF6B4A]",
+    border: "hover:border-[#FF6B4A]/45",
+    title: "POS System Development",
+    kicker: "Sales, stock, billing, reports",
+    desc: "Reliable POS and business systems for retail, restaurants, services, and inventory-heavy teams.",
+    deliverables: [
+      "Billing and cashier workflows",
+      "Inventory and stock alerts",
+      "Sales, branch, and staff reports",
+      "Receipt, barcode, and payment support",
+    ],
   },
 ];
 
-const socialServices = [
-  {
-    icon: Video,
-    title: "Content Creation",
-    desc: "Posts, graphics, short videos, reels and stories designed around your brand.",
-  },
-  {
-    icon: Globe2,
-    title: "Page Management",
-    desc: "Daily management of Facebook, Instagram, TikTok and more.",
-  },
-  {
-    icon: CalendarCheck,
-    title: "Content Calendar & Scheduling",
-    desc: "Planned, consistent posting so your brand is always visible.",
-  },
-  {
-    icon: MessageCircle,
-    title: "Community Management",
-    desc: "Replying to comments and messages and engaging with your audience.",
-  },
-  {
-    icon: Megaphone,
-    title: "Paid Ads & Promotions",
-    desc: "Targeted ad campaigns that reach the right people.",
-  },
-  {
-    icon: Palette,
-    title: "Branding & Visual Identity",
-    desc: "Logos, color palettes and brand guidelines.",
-  },
-  {
-    icon: BarChart3,
-    title: "Analytics & Reporting",
-    desc: "Monthly performance reports with clear insights.",
-  },
+const auditItems = [
+  "Speed and mobile UX",
+  "Search visibility",
+  "Conversion paths",
+  "Operations bottlenecks",
 ];
 
 export default function Services() {
   return (
-    <section id="services" className="py-24 px-4 md:px-8 bg-dark relative overflow-hidden">
-      <div className="max-w-7xl mx-auto relative z-10">
-        
-        {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-16">
-          <span className="text-xs font-mono font-bold uppercase tracking-[0.25em] text-neon mb-3 px-4 py-1.5 rounded-full glass-panel border border-neon/25">
-            What We Do
-          </span>
-          <h2 className="font-display text-3xl sm:text-5xl font-black text-white tracking-tight mb-4">
-            Our Full-Spectrum Services
-          </h2>
-          <p className="text-base text-dark-muted max-w-2xl font-normal">
-            Websites, business systems and social media management, all under one roof.
+    <section id="services" className="relative overflow-hidden bg-dark px-4 py-24 md:px-8">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+
+      <div className="relative z-10 mx-auto max-w-7xl">
+        <div className="mb-14 grid grid-cols-1 gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+          <div>
+            <span className="mb-4 inline-flex rounded-full border border-neon/25 bg-neon/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-neon">
+              Core Services
+            </span>
+            <h2 className="font-display text-4xl font-black uppercase leading-none text-white sm:text-5xl">
+              Digital products that sell and systems that run.
+            </h2>
+          </div>
+          <p className="max-w-2xl text-base leading-8 text-dark-muted lg:ml-auto">
+            We focus on the work that moves modern businesses forward: polished websites, mobile apps, SEO foundations, and POS systems that connect sales with day-to-day operations.
           </p>
         </div>
 
-        {/* 2-Column Full Showcase (Identical Card Sizes) */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-          
-          {/* Pillar 1: Web Design & Development */}
-          <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="h-full glass-panel rounded-3xl p-6 sm:p-8 border border-white/10 hover:border-neon/30 transition-all flex flex-col justify-between shadow-2xl"
-          >
-            <div className="flex-1 flex flex-col">
-              <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
-                <div className="flex items-center gap-3">
-                  <div className="p-3 rounded-2xl bg-neon/10 text-neon border border-neon/30">
-                    <Code className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-display text-2xl font-black text-white">
-                      Web Design &amp; Development
-                    </h3>
-                    <p className="text-xs text-dark-muted font-mono">
-                      Websites, Business Systems &amp; POS Solutions
-                    </p>
-                  </div>
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+          {services.map((service, idx) => (
+            <motion.article
+              key={service.title}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: idx * 0.08 }}
+              className={`group rounded-[1.75rem] border border-white/10 bg-[#121318]/86 p-6 shadow-xl transition-all duration-300 ${service.border}`}
+            >
+              <div className="mb-6 flex items-start justify-between gap-4">
+                <div className={`rounded-2xl border border-white/10 bg-black/35 p-3 ${service.accent}`}>
+                  <service.icon className="h-6 w-6" />
                 </div>
+                <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-dark-muted">
+                  0{idx + 1}
+                </span>
               </div>
 
-              <div className="flex-1 flex flex-col justify-between gap-3">
-                {webServices.map((srv, i) => (
-                  <div
-                    key={i}
-                    className="p-4 rounded-2xl bg-dark-card/60 border border-white/5 hover:border-neon/30 transition-colors flex items-start gap-3.5 group flex-1"
-                  >
-                    <div className="p-2 rounded-xl bg-[#0B0B0D] text-neon border border-white/10 group-hover:border-neon/40 shrink-0 mt-0.5">
-                      <srv.icon className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-bold text-white mb-1 group-hover:text-neon transition-colors">
-                        {srv.title}
-                      </h4>
-                      <p className="text-xs text-dark-muted leading-relaxed">
-                        {srv.desc}
-                      </p>
-                    </div>
+              <p className={`mb-2 text-xs font-bold uppercase tracking-[0.2em] ${service.accent}`}>
+                {service.kicker}
+              </p>
+              <h3 className="font-display text-2xl font-black text-white transition-colors group-hover:text-neon">
+                {service.title}
+              </h3>
+              <p className="mt-3 min-h-[4rem] text-sm leading-7 text-dark-muted">
+                {service.desc}
+              </p>
+
+              <div className="mt-6 space-y-3 border-t border-white/10 pt-5">
+                {service.deliverables.map((item) => (
+                  <div key={item} className="flex items-start gap-3 text-sm text-silver-light">
+                    <CheckCircle2 className={`mt-0.5 h-4 w-4 shrink-0 ${service.accent}`} />
+                    <span>{item}</span>
                   </div>
                 ))}
               </div>
-            </div>
-
-            <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between">
-              <span className="text-xs font-mono text-neon font-bold">
-                ✓ Full-Stack Engineering &amp; Lifetime Support
-              </span>
-              <a
-                href="#contact"
-                className="text-xs font-mono font-bold text-white hover:text-neon underline tracking-wider uppercase"
-              >
-                Inquire Now
-              </a>
-            </div>
-          </motion.div>
-
-          {/* Pillar 2: Social Media Management */}
-          <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="h-full glass-panel rounded-3xl p-6 sm:p-8 border border-white/10 hover:border-neon/30 transition-all flex flex-col justify-between shadow-2xl"
-          >
-            <div className="flex-1 flex flex-col">
-              <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
-                <div className="flex items-center gap-3">
-                  <div className="p-3 rounded-2xl bg-neon/10 text-neon border border-neon/30">
-                    <Share2 className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-display text-2xl font-black text-white">
-                      Social Media Management
-                    </h3>
-                    <p className="text-xs text-dark-muted font-mono">
-                      Content, Growth, Paid Ads &amp; Community
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex-1 flex flex-col justify-between gap-2.5">
-                {socialServices.map((srv, i) => (
-                  <div
-                    key={i}
-                    className="p-3 rounded-2xl bg-dark-card/60 border border-white/5 hover:border-neon/30 transition-colors flex items-start gap-3.5 group flex-1"
-                  >
-                    <div className="p-2 rounded-xl bg-[#0B0B0D] text-neon border border-white/10 group-hover:border-neon/40 shrink-0 mt-0.5">
-                      <srv.icon className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-bold text-white mb-0.5 group-hover:text-neon transition-colors">
-                        {srv.title}
-                      </h4>
-                      <p className="text-xs text-dark-muted leading-relaxed">
-                        {srv.desc}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between">
-              <span className="text-xs font-mono text-neon font-bold">
-                ✓ Facebook • Instagram • TikTok • Multi-Platform
-              </span>
-              <a
-                href="#contact"
-                className="text-xs font-mono font-bold text-white hover:text-neon underline tracking-wider uppercase"
-              >
-                Inquire Now
-              </a>
-            </div>
-          </motion.div>
-
+            </motion.article>
+          ))}
         </div>
 
+        <div className="mt-8 grid grid-cols-1 gap-5 rounded-[1.75rem] border border-white/10 bg-white/[0.035] p-6 md:grid-cols-[0.8fr_1.2fr] md:items-center">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#49D3FF]">
+              Free strategy audit
+            </p>
+            <h3 className="mt-2 font-display text-2xl font-black text-white">
+              Not sure which service comes first?
+            </h3>
+            <p className="mt-3 text-sm leading-7 text-dark-muted">
+              We review your current website, visibility, customer journey, and internal workflow before recommending the right build path.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {auditItems.map((item) => (
+              <div
+                key={item}
+                className="flex items-center gap-3 rounded-2xl border border-white/10 bg-[#0B0B0D]/65 px-4 py-3 text-sm font-semibold text-silver-light"
+              >
+                <span className="h-2 w-2 rounded-full bg-neon" />
+                {item}
+              </div>
+            ))}
+            <a
+              href="#contact"
+              className="group flex items-center justify-center gap-2 rounded-2xl bg-neon px-4 py-3 text-sm font-extrabold uppercase tracking-[0.14em] text-[#0B0B0D] transition-all hover:bg-neon-hover sm:col-span-2"
+            >
+              <span>Request the audit</span>
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );

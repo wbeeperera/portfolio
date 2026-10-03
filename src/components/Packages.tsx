@@ -1,134 +1,131 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, Sparkles, ArrowRight } from "lucide-react";
+import { ArrowRight, Check, Globe2, Search, ShoppingCart, Smartphone } from "lucide-react";
 
 const packages = [
   {
-    name: "Starter",
-    tagline: "Ideal for new businesses",
-    desc: "Basic website or social media setup, designed to establish a sharp, credible online presence quickly.",
+    name: "Website Launch",
+    icon: Globe2,
+    tagline: "For a modern online presence",
+    desc: "A polished, responsive website built to make your brand credible and easy to contact.",
+    accent: "text-neon",
     features: [
-      "Modern responsive website OR basic social setup",
-      "Essential SEO & mobile optimization",
-      "Core contact form & WhatsApp link integration",
-      "Initial brand profile & visual setup",
-      "Standard launch support",
+      "Custom homepage and service pages",
+      "Mobile-first responsive design",
+      "Contact, WhatsApp, and enquiry flows",
+      "Core technical SEO setup",
+      "Launch support and handover",
     ],
-    highlight: false,
   },
   {
-    name: "Business",
-    tagline: "Most popular for growing brands",
-    desc: "Full website or system with monthly social media management to steadily generate leads and attract customers.",
+    name: "SEO Growth",
+    icon: Search,
+    tagline: "For visibility and organic leads",
+    desc: "A focused SEO setup and improvement plan for businesses that want more search traffic.",
+    accent: "text-[#F8D66D]",
     features: [
-      "Custom multi-page website OR operational system",
-      "Monthly active social media management",
-      "Weekly planned posts, stories & content calendar",
-      "Basic community response & audience engagement",
-      "Monthly performance reports & insights",
-      "Ongoing technical maintenance & backups",
+      "Technical SEO audit",
+      "Keyword and competitor research",
+      "On-page optimization",
+      "Content structure recommendations",
+      "Monthly reporting option",
     ],
-    highlight: true,
   },
   {
-    name: "Premium",
-    tagline: "For established businesses scaling fast",
-    desc: "Custom system, POS integration, full social media management and ad campaigns for complete digital leadership.",
+    name: "POS System",
+    icon: ShoppingCart,
+    tagline: "For sales and inventory control",
+    desc: "A tailored POS workflow for retail, restaurants, service counters, and stock-heavy businesses.",
+    accent: "text-[#FF6B4A]",
     features: [
-      "Custom web application & tailored POS system integration",
-      "Comprehensive multi-platform social media strategy",
-      "High-retention Reels, TikToks & viral video editing",
-      "Targeted paid ad campaign setup & management",
-      "Full branding & visual identity guidelines",
-      "Priority 24/7 technical support & fast turnaround",
+      "Billing and receipt workflow",
+      "Product and stock management",
+      "Cashier, admin, and branch roles",
+      "Daily sales and inventory reports",
+      "Training and support option",
     ],
-    highlight: false,
+  },
+  {
+    name: "Mobile App",
+    icon: Smartphone,
+    tagline: "For customer or staff experiences",
+    desc: "A mobile application plan for businesses that need access beyond the website.",
+    accent: "text-[#49D3FF]",
+    features: [
+      "App flow and UX planning",
+      "Customer or staff app interface",
+      "Backend and API integration",
+      "Admin dashboard option",
+      "Testing and release guidance",
+    ],
   },
 ];
 
 export default function Packages() {
   return (
-    <section id="packages" className="py-24 px-4 md:px-8 bg-dark relative overflow-hidden">
-      <div className="max-w-7xl mx-auto relative z-10">
-        
-        {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-16">
-          <span className="text-xs font-mono font-bold uppercase tracking-[0.25em] text-neon mb-3 px-4 py-1.5 rounded-full glass-panel border border-neon/25">
-            Clear Service Tiers
+    <section id="packages" className="relative overflow-hidden bg-dark px-4 py-24 md:px-8">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+
+      <div className="relative z-10 mx-auto max-w-7xl">
+        <div className="mb-14 text-center">
+          <span className="mb-4 inline-flex rounded-full border border-neon/25 bg-neon/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-neon">
+            Project Paths
           </span>
-          <h2 className="font-display text-3xl sm:text-5xl font-black text-white tracking-tight mb-4">
-            Service Packages
+          <h2 className="mx-auto max-w-3xl font-display text-4xl font-black uppercase leading-none text-white sm:text-5xl">
+            Start with the service your business needs most.
           </h2>
-          <p className="text-base text-dark-muted max-w-xl font-normal">
-            Transparent packages designed to fit your current stage and scale as your business grows.
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-dark-muted">
+            Pricing depends on scope, integrations, content, and timeline. These paths make it easy to choose the right conversation.
           </p>
         </div>
 
-        {/* 3 Packages Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
           {packages.map((pkg, idx) => (
-            <motion.div
+            <motion.article
               key={pkg.name}
-              initial={{ opacity: 0, y: 25 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.12 }}
-              className={`rounded-3xl p-8 flex flex-col justify-between transition-all duration-300 relative ${
-                pkg.highlight
-                  ? "bg-gradient-to-b from-dark-card to-dark-surface border-2 border-neon shadow-[0_0_35px_rgba(121,252,50,0.2)] md:-translate-y-2"
-                  : "glass-panel border border-white/10 hover:border-white/25"
-              }`}
+              transition={{ duration: 0.45, delay: idx * 0.07 }}
+              className="flex min-h-[520px] flex-col justify-between rounded-[1.75rem] border border-white/10 bg-[#121318]/86 p-6 transition-all duration-300 hover:border-neon/35"
             >
-              {pkg.highlight && (
-                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-neon text-[#0B0B0D] font-mono text-[11px] font-extrabold uppercase tracking-wider shadow-md">
-                  ★ RECOMMENDED
-                </div>
-              )}
-
               <div>
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-display font-black text-2xl text-white">
-                    {pkg.name}
-                  </h3>
-                  <Sparkles className={`w-5 h-5 ${pkg.highlight ? "text-neon" : "text-dark-muted"}`} />
+                <div className="mb-6 flex items-center justify-between">
+                  <div className={`rounded-2xl border border-white/10 bg-black/35 p-3 ${pkg.accent}`}>
+                    <pkg.icon className="h-6 w-6" />
+                  </div>
+                  <span className="text-xs font-black uppercase tracking-[0.18em] text-dark-border">
+                    0{idx + 1}
+                  </span>
                 </div>
 
-                <p className="text-xs font-mono text-neon font-semibold mb-4">
+                <h3 className="font-display text-2xl font-black text-white">{pkg.name}</h3>
+                <p className={`mt-2 text-xs font-bold uppercase tracking-[0.18em] ${pkg.accent}`}>
                   {pkg.tagline}
                 </p>
+                <p className="mt-4 text-sm leading-7 text-dark-muted">{pkg.desc}</p>
 
-                <p className="text-xs text-dark-muted leading-relaxed mb-6">
-                  {pkg.desc}
-                </p>
-
-                <div className="space-y-3 pt-6 border-t border-white/10 mb-8">
-                  {pkg.features.map((feat, fIdx) => (
-                    <div key={fIdx} className="flex items-start gap-2.5 text-xs text-silver-light">
-                      <Check className="w-4 h-4 text-neon shrink-0 mt-0.5" />
-                      <span>{feat}</span>
+                <div className="mt-6 space-y-3 border-t border-white/10 pt-6">
+                  {pkg.features.map((feature) => (
+                    <div key={feature} className="flex items-start gap-3 text-sm text-silver-light">
+                      <Check className={`mt-0.5 h-4 w-4 shrink-0 ${pkg.accent}`} />
+                      <span>{feature}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div>
-                <a
-                  href="#contact"
-                  className={`w-full py-3.5 rounded-full font-mono text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 ${
-                    pkg.highlight
-                      ? "bg-neon text-[#0B0B0D] shadow-[0_0_20px_rgba(121,252,50,0.35)] hover:bg-neon-hover hover:scale-[1.02]"
-                      : "glass-panel text-white hover:border-neon hover:text-neon"
-                  }`}
-                >
-                  <span>Request a Quote</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </a>
-              </div>
-            </motion.div>
+              <a
+                href="#contact"
+                className="group mt-8 inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-5 py-3 text-xs font-extrabold uppercase tracking-[0.16em] text-white transition-all hover:border-neon/50 hover:text-neon"
+              >
+                <span>Request quote</span>
+                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+              </a>
+            </motion.article>
           ))}
         </div>
-
       </div>
     </section>
   );

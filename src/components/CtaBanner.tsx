@@ -5,39 +5,37 @@ import { ArrowRight, Sparkles } from "lucide-react";
 
 export default function CtaBanner() {
   return (
-    <section className="py-20 px-4 md:px-8 bg-dark relative overflow-hidden">
-      <div className="max-w-6xl mx-auto relative z-10">
+    <section className="relative overflow-hidden bg-dark px-4 py-20 md:px-8">
+      <div className="mx-auto max-w-6xl">
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="relative rounded-3xl p-10 sm:p-16 border border-neon/40 bg-gradient-to-r from-dark-surface via-dark-card to-dark-surface text-center overflow-hidden shadow-[0_0_50px_rgba(121,252,50,0.12)]"
+          className="relative overflow-hidden rounded-[2rem] border border-neon/35 bg-[#121318] p-8 shadow-[0_0_50px_rgba(121,252,50,0.1)] sm:p-12 lg:p-14"
         >
-          {/* Subtle Glow Backdrop */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-neon/[0.08] rounded-full blur-[140px] pointer-events-none" />
-
-          <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-neon/10 border border-neon/30 text-xs font-mono font-bold text-neon mb-6">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>START YOUR JOURNEY</span>
-            </span>
-
-            <h2 className="font-display text-3xl sm:text-5xl font-black text-white tracking-tight mb-4 leading-tight">
-              Ready to take your business online?
-            </h2>
-
-            <p className="text-base sm:text-xl text-dark-muted mb-8 font-normal">
-              Let&apos;s build something great together.
-            </p>
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-neon to-transparent" />
+          <div className="relative z-10 grid grid-cols-1 gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+            <div>
+              <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-neon/30 bg-neon/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-neon">
+                <Sparkles className="h-3.5 w-3.5" />
+                Build the next version
+              </span>
+              <h2 className="font-display text-4xl font-black uppercase leading-none text-white sm:text-5xl">
+                Ready to turn your website, app, SEO, or POS idea into a real build?
+              </h2>
+              <p className="mt-5 max-w-2xl text-base leading-8 text-dark-muted">
+                Share what you want to improve. We will map the fastest path from current state to launch-ready digital product.
+              </p>
+            </div>
 
             <a
               href="#contact"
-              className="px-9 py-4 bg-neon text-[#0B0B0D] font-mono font-extrabold text-sm tracking-widest uppercase rounded-full shadow-[0_0_30px_rgba(121,252,50,0.4)] hover:bg-neon-hover hover:scale-105 transition-all duration-300 flex items-center gap-2"
-              data-cursor-text="Connect"
+              className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-neon px-8 py-4 text-sm font-extrabold uppercase tracking-[0.16em] text-[#0B0B0D] shadow-[0_0_28px_rgba(121,252,50,0.35)] transition-all hover:bg-neon-hover sm:w-auto"
+              data-cursor-text="Start"
             >
-              <span>Contact Us Today</span>
-              <ArrowRight className="w-4 h-4" />
+              <span>Start a Project</span>
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </a>
           </div>
         </motion.div>

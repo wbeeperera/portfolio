@@ -51,8 +51,8 @@ const nuvica = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "EXOCIAL AGENCY | Web Development, Business Systems & Social Media",
-  description: "Websites, business systems and social media management, all under one roof.",
+  title: "EXOCIAL AGENCY | Website, Mobile App, SEO & POS Development",
+  description: "Website development, mobile application development, SEO growth, and POS system development for modern businesses.",
   icons: {
     icon: "/favicon.ico",
   },

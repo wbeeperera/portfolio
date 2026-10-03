@@ -41,7 +41,7 @@ export default function Loader({ onFinish }: LoaderProps) {
           <div className="w-full flex justify-between items-center text-xs tracking-widest uppercase text-dark-muted font-mono">
             <span className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-neon animate-ping" />
-              NEXUS DIGITAL STUDIO
+              EXOCIAL DIGITAL STUDIO
             </span>
             <span>PORTFOLIO © 2026</span>
           </div>
@@ -65,7 +65,7 @@ export default function Loader({ onFinish }: LoaderProps) {
             </div>
 
             <h2 className="text-xs md:text-sm tracking-[0.3em] font-mono font-medium text-white/90 uppercase text-center">
-              Web Engineering &amp; Social Growth
+              Web, App, SEO &amp; POS Systems
             </h2>
           </div>
 

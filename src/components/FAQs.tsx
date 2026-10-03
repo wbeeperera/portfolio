@@ -2,78 +2,77 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, HelpCircle, PhoneCall } from "lucide-react";
+import { ChevronDown, PhoneCall } from "lucide-react";
 
 const faqs = [
   {
-    q: "How long does it take to build a website?",
-    a: "Most websites take 2 to 4 weeks, depending on complexity. Custom systems and POS solutions may take longer.",
+    q: "How long does a website project take?",
+    a: "A focused business website usually takes 2 to 4 weeks. Larger websites, custom dashboards, and integrations take longer depending on content, approvals, and feature complexity.",
   },
   {
-    q: "Can you build a system customized to my business?",
-    a: "Yes. We design every in-house and POS system around how your business actually works.",
+    q: "Can you build mobile apps for my business?",
+    a: "Yes. We can plan and build mobile app experiences for customers, staff, bookings, loyalty, reporting, and operational workflows. The first step is mapping the exact app journey.",
   },
   {
-    q: "Do you provide support after launch?",
-    a: "Yes. We offer maintenance and support packages.",
+    q: "Do you handle SEO or only website design?",
+    a: "We handle technical SEO, on-page structure, search-focused content planning, schema basics, analytics setup, and monthly improvement plans when needed.",
   },
   {
-    q: "Do you manage all my social media platforms?",
-    a: "Yes. We manage Facebook, Instagram, TikTok and other platforms based on your needs.",
+    q: "Can the POS system match how my shop or restaurant works?",
+    a: "Yes. POS projects are scoped around your real workflow: products, stock, staff roles, receipts, branches, discounts, payments, and reports.",
   },
   {
-    q: "How do I get started?",
-    a: "Call us or fill in the contact form, and we'll arrange a free consultation.",
+    q: "Do you support the project after launch?",
+    a: "Yes. We offer maintenance, updates, feature improvements, SEO support, and troubleshooting after launch.",
+  },
+  {
+    q: "How do we get started?",
+    a: "Send an enquiry or WhatsApp us. We will review your current digital setup and recommend the best first step for your website, app, SEO, or POS project.",
   },
 ];
 
 export default function FAQs() {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
 
-  const toggle = (idx: number) => {
-    setOpenIdx(openIdx === idx ? null : idx);
-  };
-
   return (
-    <section id="faqs" className="py-24 px-4 md:px-8 bg-dark relative overflow-hidden">
-      <div className="max-w-4xl mx-auto relative z-10">
-        
-        {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-16">
-          <span className="text-xs font-mono font-bold uppercase tracking-[0.25em] text-neon mb-3 px-4 py-1.5 rounded-full glass-panel border border-neon/25">
-            Got Questions?
+    <section id="faqs" className="relative overflow-hidden bg-dark px-4 py-24 md:px-8">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+
+      <div className="relative z-10 mx-auto max-w-4xl">
+        <div className="mb-14 text-center">
+          <span className="mb-4 inline-flex rounded-full border border-neon/25 bg-neon/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-neon">
+            FAQs
           </span>
-          <h2 className="font-display text-3xl sm:text-5xl font-black text-white tracking-tight mb-4">
-            Frequently Asked Questions
+          <h2 className="font-display text-4xl font-black uppercase leading-none text-white sm:text-5xl">
+            Questions before we build.
           </h2>
-          <p className="text-base text-dark-muted max-w-xl font-normal">
-            Clear answers about timelines, custom systems, and ongoing support.
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-dark-muted">
+            Clear answers about timelines, mobile apps, SEO, POS systems, and support.
           </p>
         </div>
 
-        {/* Accordion List */}
-        <div className="space-y-4 mb-12">
+        <div className="space-y-4">
           {faqs.map((faq, idx) => {
             const isOpen = openIdx === idx;
             return (
               <div
-                key={idx}
-                className="glass-panel rounded-2xl border border-white/10 overflow-hidden transition-all duration-200"
+                key={faq.q}
+                className="overflow-hidden rounded-2xl border border-white/10 bg-[#121318]/86"
               >
                 <button
-                  onClick={() => toggle(idx)}
-                  className="w-full text-left p-6 flex items-center justify-between gap-4 transition-colors hover:text-neon"
+                  onClick={() => setOpenIdx(isOpen ? null : idx)}
+                  className="flex w-full items-center justify-between gap-4 p-6 text-left transition-colors hover:text-neon"
                 >
-                  <span className="font-display font-bold text-base sm:text-lg text-white">
+                  <span className="font-display text-base font-black text-white sm:text-lg">
                     {faq.q}
                   </span>
-                  <div
-                    className={`p-1.5 rounded-full bg-dark-card border border-white/10 text-neon transition-transform duration-300 ${
-                      isOpen ? "rotate-180 bg-neon/20 border-neon/40" : ""
+                  <span
+                    className={`rounded-full border border-white/10 bg-black/35 p-1.5 text-neon transition-transform duration-300 ${
+                      isOpen ? "rotate-180 border-neon/40 bg-neon/15" : ""
                     }`}
                   >
-                    <ChevronDown className="w-4 h-4" />
-                  </div>
+                    <ChevronDown className="h-4 w-4" />
+                  </span>
                 </button>
 
                 <AnimatePresence>
@@ -84,7 +83,7 @@ export default function FAQs() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.25 }}
                     >
-                      <div className="px-6 pb-6 pt-1 text-sm text-dark-muted leading-relaxed border-t border-white/5">
+                      <div className="border-t border-white/5 px-6 pb-6 pt-1 text-sm leading-7 text-dark-muted">
                         {faq.a}
                       </div>
                     </motion.div>
@@ -95,18 +94,17 @@ export default function FAQs() {
           })}
         </div>
 
-        {/* Quick Help Callout */}
-        <div className="glass-panel p-6 rounded-2xl border border-neon/30 bg-neon/[0.04] flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-          <div className="flex items-center gap-3.5">
-            <div className="w-10 h-10 rounded-full bg-neon/15 border border-neon/40 flex items-center justify-center text-neon shrink-0">
-              <PhoneCall className="w-5 h-5" />
+        <div className="mt-8 flex flex-col items-center justify-between gap-4 rounded-[1.5rem] border border-neon/25 bg-neon/10 p-6 text-center sm:flex-row sm:text-left">
+          <div className="flex items-center gap-3">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-neon/40 bg-neon/15 text-neon">
+              <PhoneCall className="h-5 w-5" />
             </div>
             <div>
-              <h4 className="font-display font-bold text-base text-white">
-                Have a specific question about your project?
+              <h4 className="font-display text-lg font-black text-white">
+                Want to discuss your exact build?
               </h4>
-              <p className="text-xs text-dark-muted font-mono">
-                Call or WhatsApp us directly at <span className="text-neon font-bold">070 225 1601</span>
+              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-dark-muted">
+                WhatsApp us at <span className="text-neon">070 225 1601</span>
               </p>
             </div>
           </div>
@@ -114,12 +112,11 @@ export default function FAQs() {
             href="https://wa.me/94702251601"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-5 py-2.5 rounded-full bg-neon text-[#0B0B0D] font-mono font-bold text-xs uppercase tracking-wider hover:bg-neon-hover shrink-0 shadow-md"
+            className="rounded-full bg-neon px-5 py-3 text-xs font-extrabold uppercase tracking-[0.16em] text-[#0B0B0D] transition-colors hover:bg-neon-hover"
           >
             Chat on WhatsApp
           </a>
         </div>
-
       </div>
     </section>
   );

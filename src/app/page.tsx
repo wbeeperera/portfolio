@@ -32,10 +32,10 @@ export default function Home() {
       {/* 2. About Us */}
       <About />
 
-      {/* 3. Our Services */}
+      {/* 3. Core Services */}
       <Services />
 
-      {/* 4. Featured Projects (Portfolio with Tabs) */}
+      {/* 4. Featured Projects */}
       <Portfolio />
 
       {/* 5. Our Process */}

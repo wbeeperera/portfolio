@@ -1,98 +1,86 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CheckCircle2, Target, HeartHandshake, Sparkles, Shield, Compass } from "lucide-react";
+import { Gauge, HeartHandshake, Layers3, ShieldCheck } from "lucide-react";
 
-const values = [
-  { name: "Quality", desc: "Engineered to perfection with speed, security, and responsive precision." },
-  { name: "Reliability", desc: "Dependable business systems and consistent social media execution you can trust." },
-  { name: "Creativity", desc: "Original visuals and modern interactive designs that stand out in crowded markets." },
-  { name: "Transparency", desc: "Honest communication, clear timelines, and straightforward pricing with zero hidden fees." },
+const principles = [
+  {
+    icon: Gauge,
+    name: "Performance first",
+    desc: "Fast pages, clean interactions, and responsive layouts built for impatient mobile users.",
+  },
+  {
+    icon: Layers3,
+    name: "Designed around journeys",
+    desc: "Every page, app screen, and POS workflow is mapped to a real user action.",
+  },
+  {
+    icon: ShieldCheck,
+    name: "Built for long-term use",
+    desc: "Reliable architecture, secure defaults, and support after launch keep the product useful.",
+  },
+  {
+    icon: HeartHandshake,
+    name: "Clear collaboration",
+    desc: "Simple milestones, direct updates, and transparent recommendations from day one.",
+  },
 ];
+
+const outcomes = ["More enquiries", "Better search presence", "Cleaner operations", "Stronger brand trust"];
 
 export default function About() {
   return (
-    <section id="about" className="py-24 px-4 md:px-8 bg-dark relative overflow-hidden">
-      <div className="max-w-7xl mx-auto relative z-10">
-        
-        {/* Section Pill & Title */}
-        <div className="flex flex-col items-center text-center mb-16">
-          <span className="text-xs font-mono font-bold uppercase tracking-[0.25em] text-neon mb-3 px-4 py-1.5 rounded-full glass-panel border border-neon/25">
-            About Our Agency
+    <section id="about" className="relative overflow-hidden bg-dark px-4 py-24 md:px-8">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+      <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-12 lg:items-start">
+        <div className="lg:col-span-5">
+          <span className="mb-4 inline-flex rounded-full border border-[#49D3FF]/30 bg-[#49D3FF]/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-[#49D3FF]">
+            About Exocial
           </span>
-          <h2 className="font-display text-3xl sm:text-5xl font-black text-white tracking-tight mb-6 max-w-3xl">
-            Helping Businesses Look Sharper, Work Smarter &amp; Grow Faster.
+          <h2 className="font-display text-4xl font-black uppercase leading-none text-white sm:text-5xl">
+            A product-minded digital team for ambitious local brands.
           </h2>
-          <p className="text-base sm:text-lg text-dark-muted max-w-3xl leading-relaxed font-normal">
-            We are a creative web design and social media agency that helps businesses look sharper, work smarter and grow faster. From customer-facing websites to the systems that run your daily operations, and the social media presence that brings customers to your door, we handle it all.
+          <p className="mt-6 text-base leading-8 text-dark-muted">
+            We help businesses turn scattered digital needs into one connected system: a strong website, a smooth mobile experience, search visibility, and tools that make daily operations easier.
           </p>
-        </div>
 
-        {/* Mission & Values Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          
-          {/* Mission Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="lg:col-span-5 glass-panel p-8 sm:p-10 rounded-3xl border border-white/10 bg-gradient-to-br from-dark-surface to-dark-card flex flex-col justify-between shadow-2xl relative overflow-hidden"
-          >
-            <div className="absolute top-0 right-0 w-64 h-64 bg-neon/[0.05] rounded-full blur-[100px] pointer-events-none" />
-
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neon/10 border border-neon/30 text-xs font-mono font-bold text-neon mb-6">
-                <Target className="w-4 h-4" />
-                <span>OUR MISSION</span>
-              </div>
-
-              <h3 className="font-display text-2xl sm:text-3xl font-black text-white mb-4 leading-snug">
-                Empowering Businesses With Modern Digital Power.
-              </h3>
-
-              <p className="text-sm sm:text-base text-dark-muted leading-relaxed mb-6">
-                To give every business, big or small, the digital tools and online presence it needs to succeed.
-              </p>
-            </div>
-
-            <div className="pt-6 border-t border-white/10 flex items-center gap-3 text-xs font-mono text-neon">
-              <span className="w-2 h-2 rounded-full bg-neon animate-pulse" />
-              <span>Tailored Solutions • Direct Communication</span>
-            </div>
-          </motion.div>
-
-          {/* Values Cards */}
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {values.map((v, i) => (
-              <motion.div
-                key={v.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="glass-panel glass-panel-hover p-6 rounded-2xl border border-white/10 flex flex-col justify-between"
+          <div className="mt-8 grid grid-cols-2 gap-3">
+            {outcomes.map((item) => (
+              <div
+                key={item}
+                className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-4 text-sm font-bold text-silver-light"
               >
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="font-mono text-xs text-neon font-bold">
-                      VALUE 0{i + 1}
-                    </span>
-                    <CheckCircle2 className="w-4 h-4 text-neon" />
-                  </div>
-                  <h4 className="font-display font-black text-xl text-white mb-2">
-                    {v.name}
-                  </h4>
-                  <p className="text-xs text-dark-muted leading-relaxed">
-                    {v.desc}
-                  </p>
-                </div>
-              </motion.div>
+                <span className="mb-2 block h-1 w-8 rounded-full bg-neon" />
+                {item}
+              </div>
             ))}
           </div>
-
         </div>
 
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-span-7">
+          {principles.map((item, i) => (
+            <motion.article
+              key={item.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: i * 0.08 }}
+              className="rounded-[1.5rem] border border-white/10 bg-[#121318]/86 p-6 transition-all duration-300 hover:border-neon/35"
+            >
+              <div className="mb-5 flex items-center justify-between">
+                <div className="rounded-2xl border border-white/10 bg-black/35 p-3 text-neon">
+                  <item.icon className="h-5 w-5" />
+                </div>
+                <span className="text-xs font-black uppercase tracking-[0.18em] text-dark-border">
+                  0{i + 1}
+                </span>
+              </div>
+              <h3 className="font-display text-xl font-black text-white">{item.name}</h3>
+              <p className="mt-3 text-sm leading-7 text-dark-muted">{item.desc}</p>
+            </motion.article>
+          ))}
+        </div>
       </div>
     </section>
   );

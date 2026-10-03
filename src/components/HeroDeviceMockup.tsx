@@ -152,7 +152,7 @@ export default function HeroDeviceMockup() {
           </p>
         </motion.div>
 
-        {/* 2. Top-Right Holographic Card: Social Media Growth */}
+        {/* 2. Top-Right Holographic Card: Growth Metrics */}
         <motion.div
           style={{ x: card2X, y: card2Y }}
           animate={{

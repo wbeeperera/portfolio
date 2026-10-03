@@ -40,7 +40,7 @@ export default function MetricsProcess() {
           <span className="text-xs font-mono font-bold uppercase tracking-[0.25em] text-neon mb-3 px-4 py-1.5 rounded-full glass-panel border border-neon/25">
             Execution Framework
           </span>
-          <h2 className="font-display text-3xl sm:text-5xl font-black text-white tracking-tight mb-4">
+          <h2 className="font-display text-3xl sm:text-5xl font-black text-white tracking-normal mb-4">
             How We Guarantee Results
           </h2>
           <p className="text-base text-dark-muted max-w-2xl font-normal">
@@ -96,7 +96,7 @@ export default function MetricsProcess() {
             ].map((stat, idx) => (
               <div key={idx} className="flex flex-col items-center">
                 <stat.icon className="w-6 h-6 text-neon mb-3" />
-                <span className="font-display font-black text-3xl sm:text-4xl text-white tracking-tight mb-1 neon-text-glow">
+                <span className="font-display font-black text-3xl sm:text-4xl text-white tracking-normal mb-1 neon-text-glow">
                   {stat.val}
                 </span>
                 <span className="text-xs text-dark-muted uppercase tracking-wider font-mono">

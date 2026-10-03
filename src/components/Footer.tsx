@@ -8,45 +8,32 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#08080A] border-t border-white/5 pt-16 pb-12 px-4 md:px-8 text-dark-muted">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
-        
-        {/* Brand & Copy */}
-        <div className="flex flex-col items-center md:items-start text-center md:text-left">
-          <div className="flex items-center gap-2 mb-2">
-            <span className="font-display font-black text-xl text-white tracking-wider">
-              EXOCIAL<span className="text-neon">.</span>AGENCY
-            </span>
-          </div>
-          <p className="text-xs text-dark-muted max-w-sm">
-            Websites, business systems and social media management, all under one roof.
-          </p>
-        </div>
+    <footer className="relative bg-[#08080A]/80 border-t border-white/5 py-12 px-4 md:px-8 text-dark-muted">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
 
-        {/* Nav Links */}
-        <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-mono">
-          <a href="#" className="hover:text-neon transition-colors">Home</a>
+        <span className="font-display font-black text-xl text-white tracking-wider">
+          EXOCIAL<span className="text-neon">.</span>AGENCY
+        </span>
+
+        <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
           <a href="#about" className="hover:text-neon transition-colors">About</a>
           <a href="#services" className="hover:text-neon transition-colors">Services</a>
-          <a href="#portfolio" className="hover:text-neon transition-colors">Portfolio</a>
+          <a href="#portfolio" className="hover:text-neon transition-colors">Work</a>
           <a href="#contact" className="hover:text-neon transition-colors">Contact</a>
         </div>
 
-        {/* Back To Top Button */}
         <button
           onClick={scrollToTop}
-          className="flex items-center gap-2 text-xs font-mono font-bold text-neon tracking-widest uppercase p-3 rounded-full glass-panel border border-white/10 hover:border-neon hover:bg-dark-card transition-all"
+          className="p-3 rounded-full border border-white/10 text-white hover:border-neon hover:text-neon transition-all"
           aria-label="Back to top"
         >
-          <span>Top</span>
           <ArrowUp className="w-4 h-4" />
         </button>
       </div>
 
-      <div className="max-w-7xl mx-auto mt-12 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-[11px] text-dark-muted/60 font-mono">
-        <span>© 2026 EXOCIAL AGENCY. All rights reserved.</span>
-        <span>Quality • Reliability • Creativity • Transparency</span>
-      </div>
+      <p className="max-w-6xl mx-auto mt-10 pt-6 border-t border-white/5 text-center md:text-left text-xs text-dark-muted/60">
+        © 2026 Exocial Agency
+      </p>
     </footer>
   );
 }

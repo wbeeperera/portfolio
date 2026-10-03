@@ -69,11 +69,12 @@ export default function SignalTransmission({
 
     window.addEventListener("resize", resize);
 
+    // Listen on the window so the network still reacts when content sits on top of it
     const handlePointerMove = (e: PointerEvent) => {
       const rect = container.getBoundingClientRect();
       mouse.x = e.clientX - rect.left;
       mouse.y = e.clientY - rect.top;
-      mouse.active = true;
+      mouse.active = mouse.x >= 0 && mouse.y >= 0 && mouse.x <= rect.width && mouse.y <= rect.height;
     };
 
     const handlePointerLeave = () => {
@@ -84,6 +85,7 @@ export default function SignalTransmission({
 
     const handleClick = (e: MouseEvent) => {
       const rect = container.getBoundingClientRect();
+      if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) return;
       ripples.push({
         x: e.clientX - rect.left,
         y: e.clientY - rect.top,
@@ -93,9 +95,9 @@ export default function SignalTransmission({
       });
     };
 
-    container.addEventListener("pointermove", handlePointerMove);
-    container.addEventListener("pointerleave", handlePointerLeave);
-    container.addEventListener("click", handleClick);
+    window.addEventListener("pointermove", handlePointerMove);
+    document.documentElement.addEventListener("pointerleave", handlePointerLeave);
+    window.addEventListener("click", handleClick);
 
     let animId: number;
     let time = 0;
@@ -275,16 +277,16 @@ export default function SignalTransmission({
     return () => {
       cancelAnimationFrame(animId);
       window.removeEventListener("resize", resize);
-      container.removeEventListener("pointermove", handlePointerMove);
-      container.removeEventListener("pointerleave", handlePointerLeave);
-      container.removeEventListener("click", handleClick);
+      window.removeEventListener("pointermove", handlePointerMove);
+      document.documentElement.removeEventListener("pointerleave", handlePointerLeave);
+      window.removeEventListener("click", handleClick);
     };
   }, [nodeCount]);
 
   return (
     <div
       ref={containerRef}
-      className={`absolute inset-0 pointer-events-auto overflow-hidden ${className}`}
+      className={`absolute inset-0 pointer-events-none overflow-hidden ${className}`}
     >
       <canvas ref={canvasRef} className="w-full h-full block" />
     </div>

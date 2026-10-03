@@ -1,151 +1,230 @@
 "use client";
 
-import Image from "next/image";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import localFont from "next/font/local";
+import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import Squares from "@/components/reactbits/Squares";
-import Particles from "@/components/reactbits/Particles";
 import ShinyText from "@/components/reactbits/ShinyText";
+import SignalTransmission from "@/components/reactbits/SignalTransmission";
+import IntroScene, { INTRO_CUES, INTRO_DURATION, STAGE_H, STAGE_W } from "@/components/intro/IntroScene";
+
+// Serif used inside the animated mock screens
+const cormorant = localFont({
+  src: [
+    { path: "../../public/fonts/CormorantGaramond-Variable.woff2", weight: "300 700", style: "normal" },
+    { path: "../../public/fonts/CormorantGaramond-Italic-Variable.woff2", weight: "300 700", style: "italic" },
+  ],
+  variable: "--font-cormorant",
+  display: "swap",
+});
+
+const ACCENT = "#79FC32";
+const INTRO_END = INTRO_CUES.Burst; // the opening float plays on load; scroll drives the rest
+
+// Bounding box of the scene's settled frame, in stage pixels
+const CONTENT = { top: 84, bottom: 729, left: 96, right: 1777 };
+
+/**
+ * Timeline: the opening float auto-plays once the preloader leaves, then scroll
+ * progress through the pinned hero scrubs Burst → Stack → Return, eased so it glides.
+ */
+function useScrollTimeline(sectionRef: React.RefObject<HTMLElement>) {
+  const [T, setT] = useState(0);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    let started = false;
+    let introStart = 0;
+    let current = 0;
+    let raf = 0;
+
+    const begin = () => {
+      if (!started) {
+        started = true;
+        introStart = performance.now();
+      }
+    };
+    if ((window as Window & { __exocialLoaded?: boolean }).__exocialLoaded) begin();
+    window.addEventListener("exocial:loaded", begin);
+    const fallback = window.setTimeout(begin, 2500);
+
+    const tick = (now: number) => {
+      const el = sectionRef.current;
+      let p = 0;
+      if (el) {
+        const scrollable = el.offsetHeight - window.innerHeight;
+        p = scrollable > 0 ? Math.min(1, Math.max(0, -el.getBoundingClientRect().top / scrollable)) : 0;
+      }
+      const intro = started ? Math.min(INTRO_END, (now - introStart) / 1000) : 0;
+      const target = p > 0 ? Math.max(intro, INTRO_END + p * (INTRO_DURATION - INTRO_END)) : intro;
+      current += (target - current) * 0.12;
+      if (Math.abs(target - current) < 0.0005) current = target;
+      setT((prev) => (Math.abs(prev - current) > 0.0001 ? current : prev));
+      setProgress((prev) => (Math.abs(prev - p) > 0.001 ? p : prev));
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("exocial:loaded", begin);
+      window.clearTimeout(fallback);
+    };
+  }, [sectionRef]);
+
+  return { T, progress };
+}
+
+/** Fit the 1920×1080 stage between the heading and the copy below it. */
+function useStageFit() {
+  const boxRef = useRef<HTMLDivElement>(null);
+  const topRef = useRef<HTMLDivElement>(null);
+  const bottomRef = useRef<HTMLDivElement>(null);
+  const [fit, setFit] = useState({ s: 0.5, top: 0 });
+
+  useEffect(() => {
+    const box = boxRef.current, a = topRef.current, b = bottomRef.current;
+    if (!box || !a || !b) return;
+    const update = () => {
+      const W = box.clientWidth;
+      const headingBottom = a.offsetTop + a.offsetHeight;
+      const regionBottom = b.offsetTop - Math.max(28, box.clientHeight * 0.05); // breathing room above the sub heading
+      // let the devices overlap the bottom of the heading, like a magazine cover
+      const overlap = Math.min(70, (regionBottom - headingBottom) * 0.12);
+      const regionTop = headingBottom - overlap;
+      const availH = Math.max(120, regionBottom - regionTop);
+      const ch = CONTENT.bottom - CONTENT.top;
+      const s = W >= 1024
+        ? Math.min(availH / ch, (W * 0.98) / (CONTENT.right - CONTENT.left))
+        : Math.min(availH / ch, W / 1150);
+      const mid = (regionTop + regionBottom) / 2;
+      setFit({ s, top: mid - ((CONTENT.top + CONTENT.bottom) / 2) * s });
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    [box, a, b].forEach((n) => ro.observe(n));
+    return () => ro.disconnect();
+  }, []);
+
+  return { boxRef, topRef, bottomRef, ...fit };
+}
 
 export default function Hero() {
-  // Smooth 3D mouse parallax tracking
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  const sectionRef = useRef<HTMLElement>(null);
+  const { T, progress } = useScrollTimeline(sectionRef);
+  const { boxRef, topRef, bottomRef, s, top } = useStageFit();
 
-  const springConfig = { damping: 25, stiffness: 120 };
-  const smoothMouseX = useSpring(mouseX, springConfig);
-  const smoothMouseY = useSpring(mouseY, springConfig);
-
-  // 3D device tilt & translation
-  const deviceRotateY = useTransform(smoothMouseX, [-0.5, 0.5], [-6, 6]);
-  const deviceRotateX = useTransform(smoothMouseY, [-0.5, 0.5], [5, -5]);
-  const deviceTranslateX = useTransform(smoothMouseX, [-0.5, 0.5], [-8, 8]);
-  const deviceTranslateY = useTransform(smoothMouseY, [-0.5, 0.5], [-6, 6]);
-
-  // Subtle counter-movement for background heading parallax
-  const headingTranslateY = useTransform(smoothMouseY, [-0.5, 0.5], [5, -5]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    mouseX.set(x);
-    mouseY.set(y);
-  };
-
-  const handleMouseLeave = () => {
-    mouseX.set(0);
-    mouseY.set(0);
-  };
+  // Step the copy aside while the site layers stack (they dip into its space), bring it back once they settle
+  const { Stack, Return } = INTRO_CUES;
+  const ease = (x: number) => { const c = Math.min(1, Math.max(0, x)); return c * c * (3 - 2 * c); };
+  const copyHidden = ease((T - (Stack + 0.05)) / 0.45) * (1 - ease((T - (Return + 0.9)) / 0.5));
 
   return (
     <section
+      ref={sectionRef}
       id="hero"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="relative h-screen min-h-[660px] max-h-[1080px] w-full flex flex-col items-center justify-between pt-20 pb-4 px-2 sm:px-4 md:px-8 overflow-hidden bg-dark"
+      className={`${cormorant.variable} relative h-[320vh] w-full bg-[#0e1211]`}
     >
-      {/* 1. Subtle High-Tech Background Grid */}
-      <Squares
-        direction="diagonal"
-        speed={0.25}
-        squareSize={56}
-        borderColor="rgba(255, 255, 255, 0.025)"
-        hoverFillColor="rgba(121, 252, 50, 0.08)"
-      />
+      <div ref={boxRef} className="sticky top-0 h-[100svh] min-h-[600px] w-full overflow-hidden">
+        {/* Studio backdrop */}
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#0b0d0c_0%,#121715_50%,#0a0d0c_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(50%_45%_at_50%_45%,rgba(200,230,210,0.07),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(45%_35%_at_50%_70%,rgba(121,252,50,0.08),transparent_70%)]" />
 
-      {/* 2. Interactive Constellation Particles */}
-      <Particles
-        quantity={24}
-        staticity={45}
-        ease={50}
-        color="#79FC32"
-      />
+        {/* Signal network — same as the Contact section, reacts to the pointer */}
+        <SignalTransmission className="opacity-75" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(11,11,13,0.25)_0%,rgba(11,11,13,0.7)_80%,#0B0B0D_100%)]" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-neon/60 to-transparent" />
 
-      {/* 3. Deep Volumetric Ambient Glows */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-neon/[0.1] rounded-full blur-[160px] pointer-events-none -z-10" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[300px] bg-neon/[0.07] rounded-full blur-[130px] pointer-events-none -z-10" />
+        <div className="pointer-events-none relative mx-auto flex h-full max-w-7xl flex-col items-center px-4 pb-8 pt-24 text-center sm:px-6 sm:pb-10 lg:px-8">
+          {/* Heading — sits behind the devices */}
+          <motion.div
+            ref={topRef}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 1.5, ease: [0.22, 1, 0.36, 1] }}
+            className="relative z-0 pt-2 sm:pt-4"
+          >
+            <h1 className="font-display text-[min(12.5vw,7.5vh)] font-black uppercase leading-[0.9] tracking-tight text-white [text-wrap:balance] sm:text-[min(9vw,8.5vh)] lg:text-[min(7.4vw,12vh,128px)]">
+              <span className="block">Websites, Apps,</span>
+              <span className="block">
+                <span className="text-neon neon-text-glow"><ShinyText text="SEO & POS" speed={3.2} /></span> Systems
+              </span>
+            </h1>
+          </motion.div>
 
-      {/* 4. Top Heading (Directly behind top edge of laptop mockup, 100% centered horizontally) */}
-      <motion.div
-        style={{ y: headingTranslateY }}
-        className="relative z-0 w-full max-w-5xl px-4 text-center pointer-events-none select-none pt-1 sm:pt-3"
-      >
-        <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[76px] xl:text-[84px] font-black text-white tracking-tight uppercase leading-[0.95] drop-shadow-[0_10px_35px_rgba(0,0,0,0.9)]">
-          WE BUILD <span className="text-neon neon-text-glow italic"><ShinyText text="DIGITAL EXPERIENCES" speed={3.5} /></span>
-        </h1>
-      </motion.div>
+          <div className="flex-1" />
 
-      {/* 5. Centerpiece: Big 3D Laptop with Fanned Screens (Centered horizontally, prominent) */}
-      <div className="relative z-10 w-full flex-1 flex items-center justify-center -mt-5 sm:-mt-8 md:-mt-11 [perspective:1400px]">
-        <motion.div
-          style={{
-            rotateX: deviceRotateX,
-            rotateY: deviceRotateY,
-            x: deviceTranslateX,
-            y: deviceTranslateY,
-            transformStyle: "preserve-3d",
-          }}
-          animate={{
-            y: [-6, 6, -6],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="relative w-full max-w-[980px] lg:max-w-[1120px] xl:max-w-[1220px] 2xl:max-w-[1320px] h-[48vh] sm:h-[52vh] md:h-[55vh] max-h-[530px] flex items-center justify-center"
-        >
-          {/* Luminous Neon Floating Back-Bloom */}
-          <div className="absolute inset-4 bg-neon/[0.2] rounded-full blur-[90px] pointer-events-none -z-10" />
-          
-          {/* Floor Shadow & Green Underglow */}
-          <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-[76%] h-[28px] bg-neon/35 rounded-full blur-[35px] pointer-events-none -z-10" />
-
-          {/* 3D Mockup Image (Transparent PNG - Tightly cropped for maximum width & presence) */}
-          <div className="relative w-full h-full">
-            <Image
-              src="/images/hero-centered-devices-tight.png"
-              alt="Exocial 3D Laptop with Fanned Website Panels"
-              fill
-              priority
-              className="object-contain filter drop-shadow-[0_25px_50px_rgba(0,0,0,0.95)] drop-shadow-[0_0_35px_rgba(121,252,50,0.2)]"
-            />
+          {/* Sub heading + actions */}
+          <motion.div
+            ref={bottomRef}
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.8, ease: [0.22, 1, 0.36, 1] }}
+            className="pointer-events-auto relative z-20"
+          >
+          <div
+            className="flex flex-col items-center"
+            style={{
+              opacity: 1 - copyHidden,
+              transform: `translateY(${copyHidden * 18}px)`,
+              pointerEvents: copyHidden > 0.5 ? "none" : undefined,
+            }}
+          >
+            <div className="pointer-events-none absolute -top-10 bottom-[-48px] left-1/2 -z-10 w-[100vw] -translate-x-1/2 bg-gradient-to-t from-[#0a0d0c] via-[#0a0d0c]/85 to-transparent" />
+            <p className="max-w-2xl text-sm leading-6 text-silver-light sm:text-lg sm:leading-8">
+              We design and build fast websites, mobile apps, SEO-ready growth engines and POS systems for businesses that want to look sharp and sell smarter.
+            </p>
+            <div className="mt-5 flex gap-2 sm:mt-7 sm:gap-3">
+              <a
+                href="#portfolio"
+                className="group inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full bg-neon px-5 py-3 text-[11px] font-extrabold uppercase tracking-[0.16em] text-[#0B0B0D] shadow-[0_0_28px_rgba(121,252,50,0.35)] transition-all duration-300 hover:scale-[1.02] hover:bg-neon-hover sm:px-7 sm:py-4 sm:text-sm"
+                data-cursor-text="Work"
+              >
+                <span>See Live Work</span>
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </a>
+              <a
+                href="#contact"
+                className="inline-flex items-center justify-center whitespace-nowrap rounded-full border border-white/15 bg-black/40 px-5 py-3 text-[11px] font-bold uppercase tracking-[0.16em] text-white backdrop-blur-md transition-all duration-300 hover:border-neon/60 hover:bg-neon/10 sm:px-7 sm:py-4 sm:text-sm"
+              >
+                Book a Call
+              </a>
+            </div>
           </div>
-        </motion.div>
-      </div>
-
-      {/* 6. Sub heading paragraph & Buttons (Positioned directly beneath the laptop keyboard deck) */}
-      <motion.div
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className="relative z-20 w-full max-w-xl mx-auto flex flex-col items-center text-center shrink-0 -mt-2 sm:-mt-4 pb-2"
-      >
-        {/* Sub heading paragraph */}
-        <p className="font-sans text-xs sm:text-sm md:text-base text-gray-300 font-normal leading-relaxed text-center max-w-lg mb-3 sm:mb-4">
-          That grow your business. Websites, business systems and social media management, all under one roof — engineered to turn traffic into measurable revenue.
-        </p>
-
-        {/* Buttons */}
-        <div className="flex flex-row items-center justify-center gap-3 sm:gap-4">
-          <a
-            href="#portfolio"
-            className="px-6 sm:px-8 py-3 bg-neon text-[#0B0B0D] font-extrabold text-xs sm:text-sm tracking-widest uppercase rounded-full shadow-[0_0_20px_rgba(121,252,50,0.35)] hover:bg-neon-hover hover:scale-105 transition-all duration-300 text-center font-mono flex items-center justify-center gap-2 group"
-            data-cursor-text="Explore"
-          >
-            <span>View Our Work</span>
-            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-          </a>
-          <a
-            href="#contact"
-            className="px-6 sm:px-8 py-3 glass-panel text-white font-bold text-xs sm:text-sm tracking-widest uppercase rounded-full border border-white/15 hover:border-neon/60 hover:bg-dark-card transition-all duration-300 text-center font-mono"
-          >
-            Get a Free Consultation
-          </a>
+          </motion.div>
         </div>
-      </motion.div>
 
+        {/* Animated stage — in front of the heading, behind the copy */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1/2 z-10"
+          style={{
+            top,
+            width: STAGE_W,
+            height: STAGE_H,
+            marginLeft: -STAGE_W / 2,
+            transform: `scale(${s})`,
+            transformOrigin: "50% 0",
+          }}
+        >
+          <IntroScene T={T} accent={ACCENT} />
+        </div>
+
+        {/* Vignette */}
+        <div className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(120%_100%_at_50%_45%,transparent_55%,rgba(0,0,0,0.65)_100%)]" />
+
+        {/* Scroll cue */}
+        <div
+          className="pointer-events-none absolute bottom-6 right-5 z-20 hidden items-center gap-3 sm:flex text-[10px] font-bold uppercase tracking-[0.35em] text-silver-light/80 transition-opacity duration-500 sm:bottom-8 sm:right-8"
+          style={{ opacity: progress < 0.97 ? 1 : 0 }}
+        >
+          <span>Scroll</span>
+          <span className="relative h-8 w-px overflow-hidden bg-white/15">
+            <span className="absolute inset-x-0 top-0 h-3 animate-[scrollcue_1.6s_ease-in-out_infinite] bg-neon" />
+          </span>
+        </div>
+      </div>
     </section>
   );
 }

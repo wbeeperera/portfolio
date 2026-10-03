@@ -2,18 +2,8 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  Send,
-  Phone,
-  Mail,
-  CheckCircle2,
-  User,
-  MessageSquare,
-  Sparkles,
-  Zap,
-} from "lucide-react";
+import { Send, Phone, Mail, CheckCircle2, User, MessageSquare } from "lucide-react";
 import confetti from "canvas-confetti";
-import SignalTransmission from "@/components/reactbits/SignalTransmission";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -43,96 +33,34 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 px-4 md:px-8 bg-dark relative overflow-hidden min-h-screen flex items-center">
-      {/* 1. Interactive Signal & Network Transmission Background Animation */}
-      <SignalTransmission className="opacity-75" />
-
-      {/* 2. Soft Ambient Radial Vignettes */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(11,11,13,0.3)_0%,rgba(11,11,13,0.85)_75%,#0B0B0D_100%)] pointer-events-none" />
+    <section id="contact" className="py-24 px-4 md:px-8 relative overflow-hidden min-h-screen flex items-center">
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[400px] bg-neon/[0.035] rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto w-full relative z-10">
         
-        {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-14">
-          <span className="text-xs font-mono font-bold uppercase tracking-[0.25em] text-neon mb-3 px-4 py-1.5 rounded-full glass-panel border border-neon/25">
-            Get in Touch
-          </span>
-          <h2 className="font-display text-3xl sm:text-5xl font-black text-white tracking-tight mb-4">
-            Contact Us
-          </h2>
-          <p className="text-base text-dark-muted max-w-xl font-normal">
-            Fill out the inquiry form below to arrange a free consultation for your project.
-          </p>
-        </div>
-
-        {/* 2-Column Layout: Open Background Narrative Left + Polished Inquiry Form Right */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          {/* Left Column: Direct Open Typography & Value Points (NO CARD, seamlessly on background) */}
-          <div className="lg:col-span-5 flex flex-col justify-center space-y-8">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-neon/10 border border-neon/30 text-xs font-mono font-bold text-neon mb-6">
-                <span className="w-2 h-2 rounded-full bg-neon animate-pulse shadow-[0_0_8px_#79FC32]" />
-                <span>DIRECT INQUIRY • FAST 24H RESPONSE</span>
-              </div>
 
-              <h3 className="font-display text-3xl sm:text-5xl font-black text-white tracking-tight leading-[1.12] mb-6">
-                Let&apos;s Build <br className="hidden sm:inline" />
-                <span className="text-neon neon-text-glow italic">Something Great</span> Together.
-              </h3>
+          <div className="lg:col-span-5 flex flex-col justify-center">
+            <h2 className="font-display text-3xl sm:text-5xl font-black text-white tracking-tight leading-[1.12] mb-6">
+              Let&apos;s Build <span className="text-neon">Something Great</span> Together.
+            </h2>
 
-              <p className="text-base text-dark-muted leading-relaxed font-normal">
-                Websites, business systems and social media management, all under one roof. Reach out today and let&apos;s map out your tailored solution.
-              </p>
-            </div>
+            <p className="text-base text-dark-muted leading-relaxed font-normal mb-8">
+              Tell us about your project and we&apos;ll get back to you within 24 hours to set up a free consultation.
+            </p>
 
-            {/* Core Reassurance Pillars */}
-            <div className="space-y-4 pt-2">
-              <div className="flex items-start gap-3.5">
-                <div className="w-9 h-9 rounded-xl bg-neon/10 border border-neon/30 flex items-center justify-center text-neon shrink-0 mt-0.5">
-                  <Zap className="w-4 h-4" />
-                </div>
-                <div>
-                  <span className="font-bold text-sm text-white block">Free Strategic Consultation</span>
-                  <span className="text-xs text-dark-muted font-mono leading-relaxed">Discovery audit to evaluate your online presence &amp; systems</span>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3.5">
-                <div className="w-9 h-9 rounded-xl bg-neon/10 border border-neon/30 flex items-center justify-center text-neon shrink-0 mt-0.5">
-                  <Sparkles className="w-4 h-4" />
-                </div>
-                <div>
-                  <span className="font-bold text-sm text-white block">Custom-Engineered Solutions</span>
-                  <span className="text-xs text-dark-muted font-mono leading-relaxed">Built specifically around your workflows — zero cookie-cutter templates</span>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3.5">
-                <div className="w-9 h-9 rounded-xl bg-neon/10 border border-neon/30 flex items-center justify-center text-neon shrink-0 mt-0.5">
-                  <CheckCircle2 className="w-4 h-4" />
-                </div>
-                <div>
-                  <span className="font-bold text-sm text-white block">End-to-End Dedicated Execution</span>
-                  <span className="text-xs text-dark-muted font-mono leading-relaxed">One unified team managing dev, internal tools &amp; social ads</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Network Transmission Status Indicator */}
-            <div className="pt-6 border-t border-white/10 flex items-center justify-between text-xs font-mono text-dark-muted">
-              <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-neon shadow-[0_0_8px_#79FC32]" />
-                <span className="text-white font-medium">Ready for New Projects</span>
-              </div>
-              <span className="text-neon bg-neon/10 px-3 py-1 rounded-full border border-neon/20">
-                Interactive Signal Grid
-              </span>
-            </div>
+            <a
+              href="https://wa.me/94702251601"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 text-white hover:text-neon transition-colors"
+            >
+              <Phone className="w-5 h-5 text-neon" />
+              <span className="text-base font-semibold">Call / WhatsApp: 070 225 1601</span>
+            </a>
           </div>
 
-          {/* Right Column: Full-Height Expansive Inquiry Form Card */}
+          {/* Inquiry form */}
           <div className="lg:col-span-7 glass-panel p-8 sm:p-10 rounded-3xl border border-white/15 bg-dark-card/90 backdrop-blur-xl shadow-2xl flex flex-col justify-between">
             {submitted ? (
               <motion.div

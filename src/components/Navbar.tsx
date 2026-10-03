@@ -7,9 +7,7 @@ import { Menu, X, ArrowUpRight, Phone } from "lucide-react";
 const navItems = [
   { name: "About", href: "#about" },
   { name: "Services", href: "#services" },
-  { name: "Portfolio", href: "#portfolio" },
-  { name: "Process", href: "#process" },
-  { name: "Why Us", href: "#why-us" },
+  { name: "Work", href: "#portfolio" },
   { name: "Packages", href: "#packages" },
   { name: "FAQs", href: "#faqs" },
   { name: "Contact", href: "#contact" },
@@ -41,14 +39,9 @@ export default function Navbar() {
           <div className="w-9 h-9 rounded-xl bg-dark-card border border-neon/30 flex items-center justify-center font-display font-black text-neon group-hover:scale-105 transition-transform shadow-[0_0_15px_rgba(121,252,50,0.15)]">
             E<span className="text-white text-xs">X</span>
           </div>
-          <div className="flex flex-col">
-            <span className="font-display font-extrabold text-base tracking-wider text-white">
-              EXOCIAL<span className="text-neon">.</span>AGENCY
-            </span>
-            <span className="text-[10px] tracking-widest text-dark-muted uppercase font-mono -mt-1">
-              Web • Systems • Social
-            </span>
-          </div>
+          <span className="font-display font-extrabold text-base tracking-wider text-white">
+            EXOCIAL<span className="text-neon">.</span>AGENCY
+          </span>
         </a>
 
         {/* Desktop Nav Items */}
@@ -70,7 +63,7 @@ export default function Navbar() {
             href="#contact"
             className="group relative inline-flex items-center gap-2 bg-neon text-[#0B0B0D] font-extrabold text-xs tracking-wider uppercase px-5 py-2.5 rounded-full shadow-[0_0_20px_rgba(121,252,50,0.35)] hover:bg-neon-hover transition-all duration-300 font-mono"
           >
-            <span>Free Consultation</span>
+            <span>Get in Touch</span>
             <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </a>
         </div>
@@ -120,7 +113,7 @@ export default function Navbar() {
                   onClick={() => setMobileMenuOpen(false)}
                   className="w-full text-center bg-neon text-[#0B0B0D] font-bold text-xs tracking-wider uppercase py-3 rounded-full shadow-[0_0_15px_#79FC32] font-mono"
                 >
-                  Get a Free Consultation
+                  Get in Touch
                 </a>
               </div>
             </div>

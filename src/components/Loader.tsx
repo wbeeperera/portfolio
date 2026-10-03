@@ -18,6 +18,8 @@ export default function Loader({ onFinish }: LoaderProps) {
           clearInterval(timer);
           setTimeout(() => {
             setIsLoading(false);
+            (window as Window & { __exocialLoaded?: boolean }).__exocialLoaded = true;
+            window.dispatchEvent(new Event("exocial:loaded"));
             if (onFinish) onFinish();
           }, 350);
           return 100;

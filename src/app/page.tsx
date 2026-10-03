@@ -1,6 +1,7 @@
 "use client";
 
 import Loader from "@/components/Loader";
+import SiteBackground from "@/components/SiteBackground";
 import CustomCursor from "@/components/CustomCursor";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
@@ -12,7 +13,6 @@ import WhyChooseUs from "@/components/WhyChooseUs";
 import Packages from "@/components/Packages";
 import Testimonials from "@/components/Testimonials";
 import FAQs from "@/components/FAQs";
-import CtaBanner from "@/components/CtaBanner";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -22,6 +22,9 @@ export default function Home() {
       {/* 0. Preloader & Cursor */}
       <Loader />
       <CustomCursor />
+
+      {/* Site-wide signal network background */}
+      <SiteBackground />
 
       {/* Header Navigation */}
       <Navbar />
@@ -52,9 +55,6 @@ export default function Home() {
 
       {/* 10. FAQs */}
       <FAQs />
-
-      {/* 11. Call to Action Banner */}
-      <CtaBanner />
 
       {/* 12. Contact Us */}
       <Contact />

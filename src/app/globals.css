@@ -138,3 +138,9 @@ h1, h2, h3, h4, h5, h6, .font-display {
 .neon-text-glow {
   text-shadow: 0 0 15px rgba(121, 252, 50, 0.5);
 }
+
+/* Hero scroll cue */
+@keyframes scrollcue {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(280%); }
+}

@@ -123,12 +123,12 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="hero"
-      className={`${cormorant.variable} relative h-[320vh] w-full bg-[#0e1211]`}
+      className={`${cormorant.variable} relative h-[320vh] w-full bg-[#0B0B0D]`}
     >
       <div ref={boxRef} className="sticky top-0 h-[100svh] min-h-[600px] w-full overflow-hidden">
         {/* Studio backdrop */}
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#0b0d0c_0%,#121715_50%,#0a0d0c_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(50%_45%_at_50%_45%,rgba(200,230,210,0.07),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#0B0B0D_0%,#111114_50%,#0B0B0D_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(50%_45%_at_50%_45%,rgba(220,224,232,0.06),transparent_70%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(45%_35%_at_50%_70%,rgba(121,252,50,0.08),transparent_70%)]" />
 
         {/* Signal network — same as the Contact section, reacts to the pointer */}
@@ -136,7 +136,7 @@ export default function Hero() {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(11,11,13,0.25)_0%,rgba(11,11,13,0.7)_80%,#0B0B0D_100%)]" />
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-neon/60 to-transparent" />
 
-        <div className="pointer-events-none relative mx-auto flex h-full max-w-7xl flex-col items-center px-4 pb-8 pt-24 text-center sm:px-6 sm:pb-10 lg:px-8">
+        <div className="pointer-events-none relative mx-auto flex h-full max-w-7xl flex-col items-center px-6 pb-8 pt-24 text-center sm:pb-10 md:px-10">
           {/* Heading — sits behind the devices */}
           <motion.div
             ref={topRef}
@@ -148,7 +148,7 @@ export default function Hero() {
             <h1 className="font-display text-[min(8.5vw,5.5vh)] font-black uppercase leading-[0.95] tracking-tight text-white [text-wrap:balance] sm:text-[min(6.5vw,6.5vh)] lg:text-[min(5.2vw,9vh,88px)]">
               <span className="block">We Build Digital Experiences</span>
               <span className="block">
-                That <span className="text-neon neon-text-glow"><ShinyText text="Grow Your Business" speed={3.2} /></span>
+                That <span className="text-neon"><ShinyText text="Grow Your Business" speed={3.2} /></span>
               </span>
             </h1>
           </motion.div>
@@ -171,14 +171,14 @@ export default function Hero() {
               pointerEvents: copyHidden > 0.5 ? "none" : undefined,
             }}
           >
-            <div className="pointer-events-none absolute -top-10 bottom-[-48px] left-1/2 -z-10 w-[100vw] -translate-x-1/2 bg-gradient-to-t from-[#0a0d0c] via-[#0a0d0c]/85 to-transparent" />
-            <p className="max-w-2xl text-sm leading-6 text-silver-light sm:text-lg sm:leading-8">
+            <div className="pointer-events-none absolute -top-10 bottom-[-48px] left-1/2 -z-10 w-[100vw] -translate-x-1/2 bg-gradient-to-t from-[#0B0B0D] via-[#0B0B0D]/85 to-transparent" />
+            <p className="max-w-2xl text-base leading-7 text-silver-light sm:text-xl sm:leading-8">
               Websites, business systems and social media management, all under one roof.
             </p>
             <div className="mt-5 flex w-full flex-col gap-2.5 sm:mt-7 sm:w-auto sm:flex-row sm:gap-3">
               <a
                 href="#portfolio"
-                className="group inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full bg-neon px-5 py-3 text-[11px] font-extrabold uppercase tracking-[0.16em] text-[#0B0B0D] shadow-[0_0_28px_rgba(121,252,50,0.35)] transition-all duration-300 hover:scale-[1.02] hover:bg-neon-hover sm:px-7 sm:py-4 sm:text-sm"
+                className="group inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full bg-neon px-6 py-3.5 text-xs font-extrabold uppercase tracking-[0.14em] text-[#0B0B0D] shadow-[0_0_24px_rgba(121,252,50,0.18)] transition-all duration-300 hover:scale-[1.02] hover:bg-neon-hover sm:px-7 sm:py-4 sm:text-sm"
                 data-cursor-text="Work"
               >
                 <span>View Our Work</span>
@@ -186,7 +186,7 @@ export default function Hero() {
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center whitespace-nowrap rounded-full border border-white/15 bg-black/40 px-5 py-3 text-[11px] font-bold uppercase tracking-[0.16em] text-white backdrop-blur-md transition-all duration-300 hover:border-neon/60 hover:bg-neon/10 sm:px-7 sm:py-4 sm:text-sm"
+                className="inline-flex items-center justify-center whitespace-nowrap rounded-full border border-white/15 bg-black/40 px-6 py-3.5 text-xs font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md transition-all duration-300 hover:border-neon/60 hover:bg-neon/10 sm:px-7 sm:py-4 sm:text-sm"
               >
                 Get a Free Consultation
               </a>
@@ -216,7 +216,7 @@ export default function Hero() {
 
         {/* Scroll cue */}
         <div
-          className="pointer-events-none absolute bottom-6 right-5 z-20 hidden items-center gap-3 sm:flex text-[10px] font-bold uppercase tracking-[0.35em] text-silver-light/80 transition-opacity duration-500 sm:bottom-8 sm:right-8"
+          className="pointer-events-none absolute bottom-6 right-5 z-20 hidden items-center gap-3 sm:flex text-[11px] font-bold uppercase tracking-[0.35em] text-silver-light/80 transition-opacity duration-500 sm:bottom-8 sm:right-8"
           style={{ opacity: progress < 0.97 ? 1 : 0 }}
         >
           <span>Scroll</span>

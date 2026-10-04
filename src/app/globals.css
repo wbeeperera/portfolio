@@ -54,7 +54,7 @@
 :root {
   --bg-dark: #0B0B0D;
   --accent-neon: #79FC32;
-  --surface-dark: #141418;
+  --surface-dark: #131317;
 }
 
 * {
@@ -71,7 +71,10 @@ body {
   background-color: #0B0B0D;
   color: #FFFFFF;
   overflow-x: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-nuvica), 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
   cursor: default;
 }
 
@@ -86,7 +89,35 @@ h1, h2, h3, h4, h5, h6, .font-display {
 }
 
 .font-sans {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-nuvica), 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+/* ─── Layout system ────────────────────────────────────────────────────────── */
+/* One section rhythm and one content width for every block on the page */
+@layer components {
+  .section {
+    @apply relative overflow-hidden px-6 py-24 md:px-10 md:py-32;
+  }
+  /* Alternate band: a faint lift so sections read as separate chapters
+     without hiding the site-wide background */
+  .section-alt {
+    @apply border-y border-white/[0.05] bg-white/[0.018];
+  }
+  .container-x {
+    @apply relative z-10 mx-auto w-full max-w-7xl;
+  }
+  .section-header {
+    @apply mx-auto mb-14 flex max-w-3xl flex-col items-center text-center md:mb-20;
+  }
+  .eyebrow {
+    @apply mb-4 inline-flex items-center gap-2 text-eyebrow font-semibold uppercase text-neon/80;
+  }
+  .section-title {
+    @apply font-display text-h2 font-bold text-white [text-wrap:balance];
+  }
+  .section-lead {
+    @apply mt-5 max-w-2xl text-lead text-dark-muted;
+  }
 }
 
 .font-panchang {

@@ -127,20 +127,19 @@ export default function Portfolio() {
         )}
       </AnimatePresence>
 
-      <section id="portfolio" className="py-24 px-4 md:px-8 relative overflow-hidden">
-        <div className="max-w-6xl mx-auto relative z-10">
+      <section id="portfolio" className="section">
+        <div className="container-x">
 
-          <div className="flex flex-col items-center text-center mb-16">
-            <h2 className="font-display text-3xl sm:text-5xl font-black text-white tracking-tight mb-4">
-              Our Work
-            </h2>
-            <p className="text-base text-dark-muted max-w-xl font-normal">
-              Real projects delivered for real clients.
+          <div className="section-header">
+            <span className="eyebrow">Our work</span>
+            <h2 className="section-title">Real projects for real clients</h2>
+            <p className="section-lead">
+              Websites and campaigns we&apos;ve designed, built and launched.
             </p>
           </div>
 
           {/* Websites */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-28">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-14 mb-32">
             {webShowcases.map((item, idx) => (
               <motion.div
                 key={item.id}
@@ -160,13 +159,13 @@ export default function Portfolio() {
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                   />
                 </div>
-                <span className="text-xs font-semibold text-neon uppercase tracking-wider">
+                <span className="text-eyebrow font-semibold text-neon/80 uppercase">
                   {item.category}
                 </span>
-                <h3 className="font-display text-xl sm:text-2xl font-black text-white mt-1 mb-2">
+                <h3 className="font-display text-h3 font-bold text-white mt-3 mb-2">
                   {item.title}
                 </h3>
-                <p className="text-sm text-dark-muted leading-relaxed max-w-xl">
+                <p className="text-base text-dark-muted max-w-xl">
                   {item.description}
                 </p>
               </motion.div>
@@ -174,14 +173,14 @@ export default function Portfolio() {
           </div>
 
           {/* Social media */}
-          <div>
-            <h3 className="font-display text-2xl sm:text-3xl font-black text-white mb-10 text-center md:text-left">
-              Social Media Work
-            </h3>
+          {/* Fits one screen on desktop: the image grid is capped to the viewport height */}
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              <div className="w-full lg:flex-1 lg:min-w-[260px] flex flex-col gap-6">
+                <h3 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-white mb-2 lg:mb-4 text-center lg:text-left">
+                  Social Media Work
+                </h3>
 
-              <div className="lg:col-span-4 flex flex-col gap-6">
                 <div className="flex flex-wrap lg:flex-col gap-2">
                   {campaignCategories.map((cat, idx) => {
                     const isActive = idx === activeSocialCategoryIndex;
@@ -189,7 +188,7 @@ export default function Portfolio() {
                       <button
                         key={cat.id}
                         onClick={() => setActiveSocialCategoryIndex(idx)}
-                        className={`text-left px-5 py-3 rounded-xl font-display font-bold text-sm transition-all duration-300 ${
+                        className={`text-left px-5 py-3 rounded-xl font-display font-semibold text-base transition-all duration-300 ${
                           isActive
                             ? "bg-neon text-[#0B0B0D]"
                             : "text-white/70 hover:text-white border border-white/10 hover:border-white/20"
@@ -208,14 +207,14 @@ export default function Portfolio() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.25 }}
-                    className="text-sm text-dark-muted leading-relaxed"
+                    className="text-base text-dark-muted"
                   >
                     {activeSocialCategory.desc}
                   </motion.p>
                 </AnimatePresence>
               </div>
 
-              <div className="lg:col-span-8">
+              <div className="w-full lg:w-[min(100%,max(420px,calc(100svh-9rem)))] lg:shrink-0">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeSocialCategory.id}
@@ -247,7 +246,6 @@ export default function Portfolio() {
                 </AnimatePresence>
               </div>
 
-            </div>
           </div>
 
         </div>

@@ -61,12 +61,12 @@ function createScreenTexture(): THREE.CanvasTexture {
   ctx.fill();
   ctx.fillStyle = "#79FC32";
   ctx.font = "bold 12px monospace";
-  ctx.fillText("https://exocial.agency", 180, 28);
+  ctx.fillText("https://serenode.agency", 180, 28);
 
   // Brand Header
   ctx.fillStyle = "#FFFFFF";
   ctx.font = "900 48px sans-serif";
-  ctx.fillText("EXOCIAL", 70, 140);
+  ctx.fillText("SERENODE", 70, 140);
 
   ctx.fillStyle = "#79FC32";
   ctx.font = "bold 18px monospace";

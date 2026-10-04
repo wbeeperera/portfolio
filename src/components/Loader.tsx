@@ -43,7 +43,7 @@ export default function Loader({ onFinish }: LoaderProps) {
           <div className="w-full flex justify-between items-center text-xs tracking-widest uppercase text-dark-muted font-mono">
             <span className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-neon animate-ping" />
-              NEXUS DIGITAL STUDIO
+              SERENODE
             </span>
             <span>PORTFOLIO © 2026</span>
           </div>

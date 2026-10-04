@@ -39,14 +39,13 @@ const pillars = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-24 px-4 md:px-8 relative overflow-hidden">
-      <div className="max-w-6xl mx-auto relative z-10">
+    <section id="services" className="section section-alt">
+      <div className="container-x">
 
-        <div className="flex flex-col items-center text-center mb-16">
-          <h2 className="font-display text-3xl sm:text-5xl font-black text-white tracking-tight mb-4">
-            Services
-          </h2>
-          <p className="text-base text-dark-muted max-w-2xl font-normal">
+        <div className="section-header">
+          <span className="eyebrow">Services</span>
+          <h2 className="section-title">Everything your business needs online</h2>
+          <p className="section-lead">
             Websites, business systems and social media, all under one roof.
           </p>
         </div>
@@ -59,21 +58,21 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: pIdx * 0.15 }}
-              className="glass-panel rounded-3xl p-6 sm:p-8 border border-white/10"
+              className="glass-panel rounded-3xl p-7 sm:p-10 border border-white/10"
             >
-              <h3 className="font-display text-2xl font-black text-white mb-6">
+              <h3 className="font-display text-h3 font-bold text-white mb-8">
                 {pillar.title}
               </h3>
 
-              <div className="space-y-5">
+              <div className="space-y-6">
                 {pillar.services.map((srv) => (
                   <div key={srv.title} className="flex items-start gap-4">
-                    <srv.icon className="w-5 h-5 text-neon shrink-0 mt-0.5" />
+                    <srv.icon className="w-5 h-5 text-neon/80 shrink-0 mt-0.5" />
                     <div>
-                      <h4 className="text-sm font-bold text-white mb-1">
+                      <h4 className="text-base font-semibold text-white mb-1">
                         {srv.title}
                       </h4>
-                      <p className="text-sm text-dark-muted leading-relaxed">
+                      <p className="text-[15px] leading-relaxed text-dark-muted">
                         {srv.desc}
                       </p>
                     </div>

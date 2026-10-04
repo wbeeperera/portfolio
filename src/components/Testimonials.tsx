@@ -15,7 +15,7 @@ type Testimonial = {
 // Website clients first, then social media clients
 const testimonials: Testimonial[] = [
   {
-    quote: "Exocial built our website and runs our social media. The site is fast and easy to update, and our pages now bring in real enquiries every week.",
+    quote: "Serenode built our website and runs our social media. The site is fast and easy to update, and our pages now bring in real enquiries every week.",
     business: "Boxy Electrical",
     service: "Website & Social Media",
     logo: "/images/clients/boxy.png",
@@ -38,20 +38,20 @@ const testimonials: Testimonial[] = [
     draft: true,
   },
   {
-    quote: "Exocial has transformed the way we showcase our brand on social media. Their creative designs and engaging content have significantly boosted our online presence. Highly recommend!",
+    quote: "Serenode has transformed the way we showcase our brand on social media. Their creative designs and engaging content have significantly boosted our online presence. Highly recommend!",
     business: "Frosties Creamery",
     service: "Social Media",
     logo: "/images/clients/frosties.webp",
     logoClass: "scale-[1.35]", // its own ring sits just outside our circle
   },
   {
-    quote: "Exocial's graphic designing skills are exceptional! They have beautifully highlighted our modern furniture collections, helping us connect with the right audience effortlessly.",
+    quote: "Serenode's graphic designing skills are exceptional! They have beautifully highlighted our modern furniture collections, helping us connect with the right audience effortlessly.",
     business: "Home of Kitchens",
     service: "Social Media",
     logo: "/images/clients/hok.png",
   },
   {
-    quote: "Thanks to Exocial, our solar panel solutions now stand out on social media. Their professional and eye-catching posts have truly elevated our brand's image.",
+    quote: "Thanks to Serenode, our solar panel solutions now stand out on social media. Their professional and eye-catching posts have truly elevated our brand's image.",
     business: "SELTech International",
     service: "Social Media",
     logo: "/images/clients/seltech.png",
@@ -60,13 +60,12 @@ const testimonials: Testimonial[] = [
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="py-24 px-4 md:px-8 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto relative z-10">
+    <section id="testimonials" className="section">
+      <div className="container-x">
 
-        <div className="flex flex-col items-center text-center mb-16">
-          <h2 className="font-display text-3xl sm:text-5xl font-black text-white tracking-tight">
-            What Our Clients Say
-          </h2>
+        <div className="section-header">
+          <span className="eyebrow">Testimonials</span>
+          <h2 className="section-title">What our clients say</h2>
         </div>
 
         {/* 4 across, then the last 2 centered underneath */}
@@ -79,7 +78,7 @@ export default function Testimonials() {
               whileHover={{ y: -6 }}
               viewport={{ once: true }}
               transition={{ duration: 0.35, delay: (i % 4) * 0.08 }}
-              className={`group h-full rounded-xl bg-[#0E0F12]/90 border border-white/[0.06] shadow-[0_20px_50px_rgba(0,0,0,0.6)] px-6 pt-10 pb-8 flex flex-col items-center text-center transition-[border-color,box-shadow] duration-300 hover:border-neon/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.6),0_0_30px_rgba(121,252,50,0.12)] ${
+              className={`group h-full rounded-xl bg-dark-surface/90 border border-white/[0.06] shadow-[0_20px_50px_rgba(0,0,0,0.6)] px-6 pt-10 pb-8 flex flex-col items-center text-center transition-[border-color,box-shadow] duration-300 hover:border-neon/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.6),0_0_30px_rgba(121,252,50,0.12)] ${
                 i === 4 ? "lg:col-start-2" : ""
               }`}
             >
@@ -93,7 +92,7 @@ export default function Testimonials() {
                 />
               </div>
 
-              <blockquote className="text-[15px] text-silver-light leading-relaxed mb-8">
+              <blockquote className="text-base text-silver-light leading-relaxed mb-8">
                 &ldquo;{t.quote}&rdquo;
               </blockquote>
 
@@ -101,7 +100,7 @@ export default function Testimonials() {
                 <span className="font-display font-bold text-lg text-white block mb-1.5">
                   {t.business}
                 </span>
-                <span className="text-xs font-semibold uppercase tracking-wider text-neon">
+                <span className="text-eyebrow font-semibold uppercase text-dark-muted">
                   {t.service}
                 </span>
               </figcaption>

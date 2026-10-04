@@ -83,7 +83,7 @@ export default function HeroDeviceMockup() {
               <span className="w-2.5 h-2.5 rounded-full bg-[#F59E0B]" />
               <span className="w-2.5 h-2.5 rounded-full bg-[#10B981]" />
               <span className="ml-3 text-[11px] font-mono text-dark-muted hidden sm:inline">
-                exocial.agency/showcase
+                serenode.agency/showcase
               </span>
             </div>
             <div className="flex items-center gap-2 text-[10px] font-mono text-neon bg-neon/10 px-2.5 py-0.5 rounded-full border border-neon/20 font-bold">

@@ -8,14 +8,14 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-[#08080A]/80 border-t border-white/5 py-12 px-4 md:px-8 text-dark-muted">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+    <footer className="relative bg-dark border-t border-white/5 py-14 px-6 md:px-10 text-dark-muted">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
 
-        <span className="font-display font-black text-xl text-white tracking-wider">
-          EXOCIAL<span className="text-neon">.</span>AGENCY
+        <span className="font-display font-bold text-xl text-white tracking-wider">
+          SERENODE<span className="text-neon">.</span>
         </span>
 
-        <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
+        <div className="flex flex-wrap items-center justify-center gap-8 text-[15px]">
           <a href="#about" className="hover:text-neon transition-colors">About</a>
           <a href="#services" className="hover:text-neon transition-colors">Services</a>
           <a href="#portfolio" className="hover:text-neon transition-colors">Work</a>
@@ -31,8 +31,8 @@ export default function Footer() {
         </button>
       </div>
 
-      <p className="max-w-6xl mx-auto mt-10 pt-6 border-t border-white/5 text-center md:text-left text-xs text-dark-muted/60">
-        © 2026 Exocial Agency
+      <p className="max-w-7xl mx-auto mt-10 pt-6 border-t border-white/5 text-center md:text-left text-sm text-dark-muted/70">
+        © 2026 Serenode
       </p>
     </footer>
   );

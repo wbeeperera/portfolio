@@ -12,16 +12,16 @@ const steps = [
 
 export default function Process() {
   return (
-    <section id="process" className="py-24 px-4 md:px-8 relative overflow-hidden">
-      <div className="max-w-6xl mx-auto relative z-10">
+    <section id="process" className="section section-alt">
+      <div className="container-x">
 
-        <div className="flex flex-col items-center text-center mb-16">
-          <h2 className="font-display text-3xl sm:text-5xl font-black text-white tracking-tight">
-            How We Work
-          </h2>
+        <div className="section-header">
+          <span className="eyebrow">Process</span>
+          <h2 className="section-title">How we work</h2>
+          <p className="section-lead">Five clear steps from first call to steady growth.</p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-5">
           {steps.map((item, idx) => (
             <motion.div
               key={item.step}
@@ -31,13 +31,13 @@ export default function Process() {
               transition={{ duration: 0.45, delay: idx * 0.1 }}
               className="glass-panel p-6 rounded-2xl border border-white/10"
             >
-              <span className="font-display font-black text-2xl text-neon block mb-4">
+              <span className="font-display font-bold text-3xl text-white/40 block mb-5">
                 {item.step}
               </span>
-              <h3 className="font-display font-bold text-lg text-white mb-2">
+              <h3 className="font-display font-bold text-h3 text-white mb-2">
                 {item.name}
               </h3>
-              <p className="text-sm text-dark-muted leading-relaxed">
+              <p className="text-[15px] leading-relaxed text-dark-muted">
                 {item.desc}
               </p>
             </motion.div>

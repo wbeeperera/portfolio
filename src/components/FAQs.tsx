@@ -35,16 +35,15 @@ export default function FAQs() {
   };
 
   return (
-    <section id="faqs" className="py-24 px-4 md:px-8 relative overflow-hidden">
-      <div className="max-w-4xl mx-auto relative z-10">
-        
-        <div className="flex flex-col items-center text-center mb-16">
-          <h2 className="font-display text-3xl sm:text-5xl font-black text-white tracking-tight">
-            FAQs
-          </h2>
+    <section id="faqs" className="section section-alt">
+      <div className="container-x">
+
+        <div className="section-header">
+          <span className="eyebrow">FAQs</span>
+          <h2 className="section-title">Questions, answered</h2>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 max-w-3xl mx-auto">
           {faqs.map((faq, idx) => {
             const isOpen = openIdx === idx;
             return (
@@ -54,13 +53,13 @@ export default function FAQs() {
               >
                 <button
                   onClick={() => toggle(idx)}
-                  className="w-full text-left p-6 flex items-center justify-between gap-4 transition-colors hover:text-neon"
+                  className="w-full text-left px-6 py-5 sm:px-8 sm:py-6 flex items-center justify-between gap-4 transition-colors hover:text-neon"
                 >
-                  <span className="font-display font-bold text-base sm:text-lg text-white">
+                  <span className="font-display font-semibold text-lg sm:text-xl text-white">
                     {faq.q}
                   </span>
                   <ChevronDown
-                    className={`w-5 h-5 shrink-0 text-neon transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                    className={`w-5 h-5 shrink-0 text-dark-muted transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
                   />
                 </button>
 
@@ -72,7 +71,7 @@ export default function FAQs() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.25 }}
                     >
-                      <div className="px-6 pb-6 pt-1 text-sm text-dark-muted leading-relaxed">
+                      <div className="px-6 pb-6 sm:px-8 sm:pb-7 pt-0 text-base text-dark-muted max-w-[65ch]">
                         {faq.a}
                       </div>
                     </motion.div>

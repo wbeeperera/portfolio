@@ -12,12 +12,12 @@ const config: Config = {
         dark: {
           DEFAULT: "#0B0B0D",
           bg: "#0B0B0D",
-          surface: "#141418",
+          surface: "#131317",
           card: "#1A1B20",
           cardHover: "#22232A",
           border: "#282932",
           muted: "#A3A7AF",
-          subtle: "#6B7280",
+          subtle: "#80858F",
         },
         neon: {
           DEFAULT: "#79FC32",
@@ -31,6 +31,14 @@ const config: Config = {
           light: "#E5E7EB",
           dark: "#4C4D4F",
         },
+      },
+      // Type scale: fluid sizes so headings shrink smoothly on small screens
+      fontSize: {
+        display: ["clamp(2.75rem, 6.5vw, 6rem)", { lineHeight: "0.92", letterSpacing: "-0.035em" }],
+        h2: ["clamp(2.25rem, 4.2vw, 3.75rem)", { lineHeight: "1.04", letterSpacing: "-0.025em" }],
+        h3: ["clamp(1.25rem, 1.6vw, 1.5rem)", { lineHeight: "1.25", letterSpacing: "-0.01em" }],
+        lead: ["clamp(1.0625rem, 1.3vw, 1.25rem)", { lineHeight: "1.6" }],
+        eyebrow: ["0.8125rem", { lineHeight: "1", letterSpacing: "0.14em" }],
       },
       fontFamily: {
         sans: ["var(--font-nuvica)", "Plus Jakarta Sans", "Inter", "system-ui", "sans-serif"],

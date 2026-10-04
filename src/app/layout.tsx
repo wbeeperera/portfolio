@@ -53,9 +53,6 @@ const nuvica = localFont({
 export const metadata: Metadata = {
   title: "SERENODE | Web Development, Business Systems & Social Media",
   description: "Websites, business systems and social media management, all under one roof.",
-  icons: {
-    icon: "/favicon.ico",
-  },
 };
 
 export default function RootLayout({

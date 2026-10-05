@@ -27,7 +27,7 @@ export default function Process() {
               key={item.step}
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "0px 0px 120px 0px" }}
               transition={{ duration: 0.45, delay: idx * 0.1 }}
               className="glass-panel p-6 rounded-2xl border border-white/10"
             >

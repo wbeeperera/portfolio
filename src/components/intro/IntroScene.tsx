@@ -44,8 +44,8 @@ const F = {
   h: 'var(--font-cormorant), "Cormorant Garamond", serif',
   ui: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, sans-serif',
 };
-const BRAND = "Serenode";
-const HANDLE = "serenode";
+const BRAND = "Serenod";
+const HANDLE = "serenod";
 
 function Slab({ w, h, depth, step = 1.5, radius, edge, face, children }: {
   w: number; h: number; depth: number; step?: number; radius: number; edge: string; face: CSSProperties; children?: ReactNode;
@@ -375,7 +375,7 @@ function FBCard() {
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 10px', borderRadius: 10, background: '#fff' }}>
         <Avatar txt="MK" bg="#3b6ec9" size={28} />
         <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-          <div style={{ fontFamily: F.ui, fontSize: 10.5, color: '#050505' }}><b>A client</b> recommends Serenode</div>
+          <div style={{ fontFamily: F.ui, fontSize: 10.5, color: '#050505' }}><b>A client</b> recommends Serenod</div>
           <div style={{ fontFamily: F.ui, fontSize: 10, color: '#f5a623', letterSpacing: 1 }}>★★★★★</div>
         </div>
       </div>

@@ -59,7 +59,7 @@ function validate(f: Fields, selected: string[]): Errors {
 
 /* Shared input styling: large hit area, quiet border, neon focus ring */
 const inputBase =
-  "w-full h-12 rounded-xl border bg-white/[0.03] pl-11 pr-4 text-base text-white placeholder:text-dark-subtle transition-[border-color,box-shadow,background-color] duration-200 focus:outline-none focus:bg-white/[0.05] focus:border-neon/60 focus:ring-4 focus:ring-neon/10";
+  "w-full h-12 lg:h-11 rounded-xl border bg-white/[0.03] pl-11 pr-4 text-base text-white placeholder:text-dark-subtle transition-[border-color,box-shadow,background-color] duration-200 focus:outline-none focus:bg-white/[0.05] focus:border-neon/60 focus:ring-4 focus:ring-neon/10";
 
 function Field({
   id,
@@ -153,25 +153,26 @@ export default function Contact() {
   };
 
   const whatsappText = encodeURIComponent(
-    `Hi Serenode, I'm ${fields.name || "interested in working with you"}.` +
+    `Hi Serenod, I'm ${fields.name || "interested in working with you"}.` +
       (selected.length ? ` I'm looking for: ${selected.join(", ")}.` : "") +
       (fields.message ? `\n\n${fields.message}` : "")
   );
 
   return (
-    <section id="contact" className="section section-alt">
+    <section id="contact" className="section section-alt lg:!py-0 lg:min-h-[100svh] lg:flex lg:items-center">
       <div className="pointer-events-none absolute left-1/4 top-1/2 h-[400px] w-[500px] -translate-y-1/2 rounded-full bg-neon/[0.035] blur-[160px]" />
 
-      <div className="container-x">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+      {/* Desktop: spacing scales with screen height so the form fits one screen */}
+      <div className="container-x lg:pt-[5.5rem] lg:pb-[2.5svh]">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16 lg:items-center">
 
           {/* Left: promise, direct line, what happens next */}
-          <div className="lg:col-span-5 lg:pt-4">
+          <div className="lg:col-span-5">
             <span className="eyebrow">Contact</span>
-            <h2 className="section-title mb-6">
+            <h2 className="section-title mb-6 lg:mb-[2.5svh] lg:text-[clamp(2rem,5.6svh,3.75rem)]">
               Let&apos;s build <span className="text-neon">something great</span> together.
             </h2>
-            <p className="mb-10 text-lead text-dark-muted">
+            <p className="mb-10 lg:mb-[4svh] text-lead text-dark-muted">
               Tell us about your project and we&apos;ll get back to you within 24 hours to set up a free consultation.
             </p>
 
@@ -179,7 +180,7 @@ export default function Contact() {
               href={`https://wa.me/${WHATSAPP_NUMBER}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="group mb-12 flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4 pr-5 transition-colors hover:border-neon/40 hover:bg-neon/[0.04]"
+              className="group mb-12 lg:mb-[4.5svh] flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4 pr-5 transition-colors hover:border-neon/40 hover:bg-neon/[0.04]"
             >
               <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-neon/10 text-neon">
                 <MessageCircle className="h-5 w-5" />
@@ -191,8 +192,8 @@ export default function Contact() {
               <ArrowRight className="h-5 w-5 text-dark-muted transition-all group-hover:translate-x-1 group-hover:text-neon" />
             </a>
 
-            <h3 className="mb-6 text-eyebrow font-semibold uppercase text-dark-muted">What happens next</h3>
-            <ol className="relative space-y-6">
+            <h3 className="mb-6 lg:mb-[2.5svh] text-eyebrow font-semibold uppercase text-dark-muted">What happens next</h3>
+            <ol className="relative space-y-6 lg:space-y-[2.4svh]">
               {/* connecting line */}
               <span className="absolute bottom-5 left-[19px] top-5 w-px bg-white/10" aria-hidden="true" />
               {nextSteps.map((s, i) => (
@@ -211,7 +212,7 @@ export default function Contact() {
 
           {/* Right: the form */}
           <div className="lg:col-span-7">
-            <div ref={cardRef} className="flex flex-col justify-center lg:min-h-[640px] rounded-3xl border border-white/10 bg-dark-card/80 p-6 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7)] backdrop-blur-xl sm:p-10">
+            <div ref={cardRef} className="flex flex-col justify-center rounded-3xl border border-white/10 bg-dark-card/80 p-6 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7)] backdrop-blur-xl sm:p-10 lg:p-[clamp(1.5rem,3.6svh,2.5rem)]">
               <AnimatePresence mode="wait">
                 {submitted ? (
                   <motion.div
@@ -258,15 +259,15 @@ export default function Contact() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                   >
-                    <div className="mb-8">
+                    <div className="mb-8 lg:mb-[2.6svh]">
                       <h3 className="font-display text-h3 font-bold text-white">Tell us about your project</h3>
                       <p className="mt-1 text-[15px] text-dark-muted">Takes about 2 minutes. Everything is required unless marked optional.</p>
                     </div>
 
                     {/* Service chips */}
-                    <fieldset className="mb-7">
-                      <legend className="mb-3 text-sm font-medium text-silver-light">What do you need help with?</legend>
-                      <div id="contact-services" tabIndex={-1} className="flex flex-wrap gap-2.5 outline-none">
+                    <fieldset className="mb-7 lg:mb-[2.6svh]">
+                      <legend className="mb-3 lg:mb-2 text-sm font-medium text-silver-light">What do you need help with?</legend>
+                      <div id="contact-services" tabIndex={-1} className="flex flex-wrap gap-2.5 lg:gap-2 outline-none">
                         {services.map(({ id, icon: Icon }) => {
                           const on = selected.includes(id);
                           return (
@@ -275,13 +276,13 @@ export default function Contact() {
                               type="button"
                               aria-pressed={on}
                               onClick={() => toggleService(id)}
-                              className={`inline-flex items-center gap-2 rounded-full border px-4 py-2.5 text-[15px] font-medium transition-all duration-200 ${
+                              className={`inline-flex items-center gap-2 rounded-full border px-4 py-2.5 text-[15px] lg:gap-1.5 lg:px-3 lg:py-2 lg:text-sm font-medium transition-all duration-200 ${
                                 on
                                   ? "border-neon bg-neon/10 text-white"
                                   : "border-white/10 bg-white/[0.02] text-dark-muted hover:border-white/25 hover:text-white"
                               }`}
                             >
-                              {on ? <Check className="h-4 w-4 text-neon" /> : <Icon className="h-4 w-4" />}
+                              {on ? <Check className="h-4 w-4 text-neon" /> : <Icon className="h-4 w-4 lg:max-[1400px]:hidden" />}
                               {id}
                             </button>
                           );
@@ -296,7 +297,7 @@ export default function Contact() {
                       </AnimatePresence>
                     </fieldset>
 
-                    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                    <div className="grid grid-cols-1 gap-5 lg:gap-x-4 lg:gap-y-[2svh] sm:grid-cols-2">
                       <Field id="contact-name" label="Full name" icon={User} error={showError("name")}>
                         <input
                           id="contact-name"
@@ -357,7 +358,7 @@ export default function Contact() {
                       </Field>
                     </div>
 
-                    <div className="mt-5">
+                    <div className="mt-5 lg:mt-[2svh]">
                       <label htmlFor="contact-message" className="mb-2 block text-sm font-medium text-silver-light">
                         About your project
                       </label>
@@ -371,7 +372,7 @@ export default function Contact() {
                         placeholder="What does your business do, and what would you like to achieve? Any deadlines or examples you like?"
                         aria-invalid={!!showError("message")}
                         aria-describedby="contact-message-hint"
-                        className={`${inputBase} !h-auto resize-none py-3.5 !pl-4 leading-relaxed ${
+                        className={`${inputBase} !h-auto lg:!h-[clamp(64px,11svh,150px)] resize-none py-3.5 !pl-4 leading-relaxed ${
                           showError("message") ? "border-[#FF8A80]/60" : "border-white/10 hover:border-white/20"
                         }`}
                       />
@@ -386,7 +387,7 @@ export default function Contact() {
                     <button
                       type="submit"
                       disabled={loading}
-                      className="group mt-8 flex h-14 w-full items-center justify-center gap-2 rounded-xl bg-neon text-base font-bold text-[#0B0B0D] transition-all duration-200 hover:bg-neon-hover active:scale-[0.99] disabled:cursor-wait disabled:opacity-80"
+                      className="group mt-8 lg:mt-[2.6svh] flex h-14 lg:h-12 w-full items-center justify-center gap-2 rounded-xl bg-neon text-base font-bold text-[#0B0B0D] transition-all duration-200 hover:bg-neon-hover active:scale-[0.99] disabled:cursor-wait disabled:opacity-80"
                     >
                       {loading ? (
                         <>
@@ -401,7 +402,7 @@ export default function Contact() {
                       )}
                     </button>
 
-                    <p className="mt-4 flex items-center justify-center gap-2 text-sm text-dark-subtle">
+                    <p className="mt-4 lg:mt-3 flex items-center justify-center gap-2 text-sm text-dark-subtle">
                       <Lock className="h-3.5 w-3.5" />
                       Your details stay private. No spam, ever.
                     </p>

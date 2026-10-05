@@ -30,7 +30,7 @@ export default function WhyChooseUs() {
       <motion.div
         initial={{ opacity: 0, x: 40 }}
         whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: "-120px" }}
+        viewport={{ once: true, margin: "0px 0px 120px 0px" }}
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         aria-hidden="true"
         className="pointer-events-none relative order-last -mx-6 mt-14 md:-mx-10 lg:absolute lg:bottom-0 lg:right-0 lg:mx-0 lg:mt-0 lg:w-[min(40vw,700px,calc(100svh-9rem))] [mask-image:linear-gradient(to_bottom,black_70%,transparent)]"
@@ -52,7 +52,7 @@ export default function WhyChooseUs() {
       <div className="container-x lg:pt-20 lg:pb-[3svh]">
         <div className="lg:w-[54%] xl:w-1/2">
           <span className="eyebrow">Why us</span>
-          <h2 className="section-title lg:text-[clamp(2rem,6svh,3.75rem)]">Why businesses choose Serenode</h2>
+          <h2 className="section-title lg:text-[clamp(2rem,6svh,3.75rem)]">Why businesses choose Serenod</h2>
           <p className="mt-5 lg:mt-[2svh] max-w-xl text-lead text-dark-muted">
             Clear thinking before we build anything, and a team that stays with you after launch.
           </p>
@@ -63,7 +63,7 @@ export default function WhyChooseUs() {
                 key={r.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "0px 0px 120px 0px" }}
                 transition={{ duration: 0.45, delay: i * 0.08 }}
                 className="border-l-2 border-neon/35 pl-5"
               >

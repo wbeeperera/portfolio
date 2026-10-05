@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import SerenodMark from "@/components/brand/SerenodMark";
 import { Menu, X, ArrowUpRight, Phone } from "lucide-react";
 
 const navItems = [
@@ -16,6 +17,19 @@ const navItems = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  // Hidden until the loader's emblem flies in and lands on it
+  const [logoLanded, setLogoLanded] = useState(false);
+
+  useEffect(() => {
+    const land = () => setLogoLanded(true);
+    if ((window as Window & { __serenodLogoLanded?: boolean }).__serenodLogoLanded) land();
+    window.addEventListener("serenod:logo-landed", land);
+    const fallback = window.setTimeout(land, 8000);
+    return () => {
+      window.removeEventListener("serenod:logo-landed", land);
+      window.clearTimeout(fallback);
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,11 +50,12 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Brand Logo */}
         <a href="#" className="flex items-center gap-2.5 group">
-          <div className="w-9 h-9 rounded-xl bg-dark-card border border-neon/30 flex items-center justify-center font-display font-black text-neon group-hover:scale-105 transition-transform">
-            S<span className="text-white text-xs">N</span>
-          </div>
+          <SerenodMark
+            data-nav-logo
+            className={`h-9 w-auto aspect-[507/685] group-hover:scale-105 transition-transform ${logoLanded ? "opacity-100" : "opacity-0"}`}
+          />
           <span className="font-display font-extrabold text-base tracking-wider text-white">
-            SERENODE<span className="text-neon">.</span>
+            SERENOD<span className="text-neon">.</span>
           </span>
         </a>
 

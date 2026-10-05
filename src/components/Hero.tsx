@@ -31,6 +31,7 @@ const CONTENT = { top: 84, bottom: 729, left: 96, right: 1777 };
 function useScrollTimeline(sectionRef: React.RefObject<HTMLElement>) {
   const [T, setT] = useState(0);
   const [progress, setProgress] = useState(0);
+  const [revealed, setRevealed] = useState(false);
 
   useEffect(() => {
     let started = false;
@@ -41,12 +42,13 @@ function useScrollTimeline(sectionRef: React.RefObject<HTMLElement>) {
     const begin = () => {
       if (!started) {
         started = true;
+        setRevealed(true);
         introStart = performance.now();
       }
     };
     if ((window as Window & { __exocialLoaded?: boolean }).__exocialLoaded) begin();
     window.addEventListener("exocial:loaded", begin);
-    const fallback = window.setTimeout(begin, 2500);
+    const fallback = window.setTimeout(begin, 6000); // safety net; the loader normally fires this at ~3.5s
 
     const tick = (now: number) => {
       const el = sectionRef.current;
@@ -72,7 +74,7 @@ function useScrollTimeline(sectionRef: React.RefObject<HTMLElement>) {
     };
   }, [sectionRef]);
 
-  return { T, progress };
+  return { T, progress, revealed };
 }
 
 /** Fit the 1920×1080 stage between the heading and the copy below it. */
@@ -111,7 +113,7 @@ function useStageFit() {
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const { T, progress } = useScrollTimeline(sectionRef);
+  const { T, progress, revealed } = useScrollTimeline(sectionRef);
   const { boxRef, topRef, bottomRef, s, top } = useStageFit();
 
   // Step the copy aside while the site layers stack (they dip into its space), bring it back once they settle
@@ -123,7 +125,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="hero"
-      className={`${cormorant.variable} relative h-[320vh] w-full bg-[#0B0B0D]`}
+      className={`${cormorant.variable} relative h-[100svh] min-h-[600px] w-full bg-[#0B0B0D] md:h-[320vh]`}
     >
       <div ref={boxRef} className="sticky top-0 h-[100svh] min-h-[600px] w-full overflow-hidden">
         {/* Studio backdrop */}
@@ -141,8 +143,8 @@ export default function Hero() {
           <motion.div
             ref={topRef}
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 1.5, ease: [0.22, 1, 0.36, 1] }}
+            animate={revealed ? { opacity: 1, y: 0 } : undefined}
+            transition={{ duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="relative z-0 pt-2 sm:pt-4"
           >
             <h1 className="font-display text-[min(8.5vw,5.5vh)] font-black uppercase leading-[0.95] tracking-tight text-white [text-wrap:balance] sm:text-[min(6.5vw,6.5vh)] lg:text-[min(5.2vw,9vh,88px)]">
@@ -159,8 +161,8 @@ export default function Hero() {
           <motion.div
             ref={bottomRef}
             initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.8, ease: [0.22, 1, 0.36, 1] }}
+            animate={revealed ? { opacity: 1, y: 0 } : undefined}
+            transition={{ duration: 0.8, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
             className="pointer-events-auto relative z-20"
           >
           <div

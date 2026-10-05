@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { X, Search } from "lucide-react";
@@ -64,6 +64,43 @@ const campaignCategories = [
     ],
   },
 ];
+
+/** Loads and plays only while near the viewport, so the page doesn't pull ~20MB of video up front. */
+function LazyVideo({ src, className }: { src: string; className?: string }) {
+  const ref = useRef<HTMLVideoElement>(null);
+  const [load, setLoad] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setLoad(true);
+          el.play().catch(() => {});
+        } else {
+          el.pause();
+        }
+      },
+      { rootMargin: "300px 0px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <video
+      ref={ref}
+      src={load ? src : undefined}
+      muted
+      loop
+      playsInline
+      preload="none"
+      autoPlay={load}
+      className={className}
+    />
+  );
+}
 
 export default function Portfolio() {
   const [activeSocialCategoryIndex, setActiveSocialCategoryIndex] = useState(0);
@@ -145,17 +182,13 @@ export default function Portfolio() {
                 key={item.id}
                 initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "0px 0px 120px 0px" }}
                 transition={{ duration: 0.5, delay: idx * 0.12 }}
                 className={`group ${idx === 0 ? "lg:col-span-2" : ""}`}
               >
                 <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 bg-black mb-5 group-hover:border-neon/40 transition-colors">
-                  <video
+                  <LazyVideo
                     src={item.src}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                   />
                 </div>

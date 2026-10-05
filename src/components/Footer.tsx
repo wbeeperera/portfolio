@@ -12,7 +12,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
 
         <span className="font-display font-bold text-xl text-white tracking-wider">
-          SERENODE<span className="text-neon">.</span>
+          SERENOD<span className="text-neon">.</span>
         </span>
 
         <div className="flex flex-wrap items-center justify-center gap-8 text-[15px]">
@@ -32,7 +32,7 @@ export default function Footer() {
       </div>
 
       <p className="max-w-7xl mx-auto mt-10 pt-6 border-t border-white/5 text-center md:text-left text-sm text-dark-muted/70">
-        © 2026 Serenode
+        © 2026 Serenod
       </p>
     </footer>
   );

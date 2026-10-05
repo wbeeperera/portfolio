@@ -58,7 +58,7 @@ export default function Packages() {
               key={pkg.name}
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "0px 0px 120px 0px" }}
               transition={{ duration: 0.5, delay: idx * 0.12 }}
               className={`rounded-3xl p-8 lg:p-10 flex flex-col justify-between relative ${
                 pkg.highlight
